@@ -1,0 +1,32 @@
+<div class="rTableCell">
+	<img id="b_{{data[0]["record_id"]}}_add" class="action_icon" onclick="javascript:add_to_basket({{data[0]["record_id"]}})" src="img/emprunter.png" {% if data[0]["in_basket"]%}style='display:none'{% endif %}/>
+	<img id="b_{{data[0]["record_id"]}}_rem" class="action_icon" onclick="javascript:rem_from_basket({{data[0]["record_id"]}})" src="img/inactive.png" {% if not data[0]["in_basket"]%}style='display:none'{% endif %}/>
+</div>
+{% for met in metas["record"] %}
+<div class="rTableCell">{{data[0][met["field_name"]]}}</div>
+{% endfor %}
+<div class="rTableCell">
+{% for line in data %}
+	{{line["sequence_order"]}}<br/>
+{% endfor %}
+</div>
+{% for met in metas["production"] %}
+<div class="rTableCell">
+	{% for line in data %}
+		{{line[met["field_name"]]}}<br/>
+	{% endfor %}
+</div>
+{% endfor %}
+{% for met in metas["speaker"] %}
+<div class="rTableCell">
+	{% for line in data %}
+		{{line[met["field_name"]]}}<br/>
+	{% endfor %}
+</div>
+{% endfor %}
+<div class="rTableCell">
+	<audio controls preload="none">
+	  <source src="./files/{{data[0]["filename"]}}" type="audio/wav">
+	Your browser does not support the audio element.
+	</audio>
+</div>

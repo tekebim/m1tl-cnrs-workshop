@@ -1,0 +1,32 @@
+{% include 'header.twig' %}
+
+<div>
+	<h1>Gestion de la base - table {{table}}</h1>
+	
+	Champs obligatoires
+	<ul>
+		{% for data in required %}
+			<li>{{ data }}</li>
+		{% endfor %}
+	</ul>
+	
+	Champs optionels
+	<div class="rTable">
+		<div class="rTableHeading">
+			<div class="rTableHead"></div>
+			<div class="rTableHead"><span class="header">Nom (unique)</span></div>
+			<div class="rTableHead"><span class="header">Type</span></div>
+			
+			<div class="rTableHead"><span class="header">Description</span></div>
+			<div class="rTableHead"><span class="header">Actif</span></div>
+		</div>
+		{% for data in meta %}
+		<div class="rTableRow {% if loop.index % 2 == 0%}even{% else %}odd{% endif %}" id="eq{{ data["id"] }}">
+			{% include 'one_meta.twig' with {'data': data} %}
+		</div>
+		{% endfor %}
+	</div>
+	<a href="edit_meta.php?metaid=-1&table={{table}}">Ajouter un nouveau champ optionel</a>
+</div>
+
+{% include 'footer.twig' %}

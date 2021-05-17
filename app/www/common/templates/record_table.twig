@@ -1,0 +1,21 @@
+<div class="rTable">
+	<div class="rTableHeading">
+		<div class="rTableHead">&nbsp;</div>
+		{% for data in metas["record"] %}
+			<div class="rTableHead"><span class="header">{{data["label"]}}</span></div>
+		{% endfor %}
+		<div class="rTableHead">&nbsp;</div>
+		{% for data in metas["production"] %}
+			<div class="rTableHead"><span class="header">{{data["label"]}}</span></div>
+		{% endfor %}
+		{% for data in metas["speaker"] %}
+			<div class="rTableHead"><span class="header">{{data["label"]}}</span></div>
+		{% endfor %}
+			<div class="rTableHead">&nbsp;</div>
+	</div>
+	{% for data in results %}
+	<div class="rTableRow {% if loop.index % 2 == 0%}even{% else %}odd{% endif %}" id="record{{ data["record_id"] }}">
+				{% include 'one_record.twig' with {'data': data, 'metas':metas} %}
+	</div>
+	{% endfor %}
+</div>

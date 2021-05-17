@@ -1,0 +1,32 @@
+<div class="queryfilterglobal">
+<form method="post"><input type="submit" value="Reset all filters"/></form>
+<form id="edit_form" method="post">
+	{% for key, data in metas %}
+		{% if data|length > 0 %}
+			<div class="queryfilter">
+				Filters for table {{ key }}<br/>
+				<ul>
+				{% for meta in data %}
+					<li>
+						<input type="hidden" name="field[{{meta.id}}]" value="{{ meta.field_name }}"/>
+						{% if meta.type == 'txt' %}
+							{% include 'one_filter_txt.twig' with {'meta':meta, 'value':values[meta.id]}%}
+						{% endif %}
+						{% if meta.type == 'int' or meta.type == 'float'  %}
+							{% include 'one_filter_num.twig' with {'meta':meta, 'value':values[meta.id]}%}
+						{% endif %}
+						{% if meta.type == 'date'  %}
+							{% include 'one_filter_date.twig' with {'meta':meta, 'value':values[meta.id]}%}
+						{% endif %}
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
+<br clear="both" />&nbsp;<br/>
+	<input type="submit" value="Set filters"/>
+</form>
+<br clear="both"/>&nbsp;<br/>
+

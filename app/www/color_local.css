@@ -1,0 +1,22 @@
+:root {
+  --body-color: #800000;
+  --body-background-color: #FFEFD5;
+  
+  --menu-text-color: #ffffff;
+  --menu-text-inverse-color: #000000;
+  --menu-bg-color: #556B2F;
+  --menu-bg-hover-color: #4cb6ea;
+  --menu-open-border-top-color : rgba(110, 110, 110, 0.25);
+  
+  --table-odd-background-color: #58781c;
+  --table-odd-color: #ffffff;
+  --table-even-background-color: #709c25;
+  --table-even-color: #ffffff;
+  --table-hover-background-color: #9c9425;
+  --table-hover-color: #ffffff;
+  
+  --table-cell-border-color: #999999;
+  
+  --table-header-color: #ffffff;
+  --table-header-background-color: #556B2F;
+}

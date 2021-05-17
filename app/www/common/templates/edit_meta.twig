@@ -1,0 +1,67 @@
+{% include 'header.twig' %}
+
+<div>
+	<h1>Edition d'un champ optionel</h1>
+	
+	<form id="edit_form" method="post">
+	<input type="hidden" name="act" value="save">
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell"></div>
+			<div class="rTableCell">{% if meta["id"] %}#{{meta["id"]}}{% endif %}</div>
+		</div>
+	</div>
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell">Pour la table</div>
+			<div class="rTableCell">{{meta["table_name"]}}</div>
+		</div>
+	</div>
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell">Nom du champ</div>
+			<div class="rTableCell"><input name='field_name' value='{{meta["field_name"]}}'/></div>
+		</div>
+	</div>
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell">Type du champ</div>
+			<div class="rTableCell">
+			{% if meta["id"] == -1 %}
+				<select name="type">
+					{% for t in types %}
+						<option value="{{t}}"{% if t == meta["type"] %} selected{% endif %}>{{t}}</option>
+					{% endfor %}
+				</select>
+			{% else %}
+				{{meta["type"]}}
+			{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell">Intitulé du champ (pour la recherche)</div>
+			<div class="rTableCell"><input name='label' value='{{meta["label"]}}'/></div>
+		</div>
+	</div>
+	<div class="rTable">
+		<div class="rTableRow">
+			<div class="rTableHeadCell">Champ actif ?</div>
+			<div class="rTableCell">
+				<select name="active">
+					<option value="1" {% if '1' == meta["active"] %} selected{% endif %}>Oui</option>
+					<option value="0" {% if '0' == meta["active"] %} selected{% endif %}>Non</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="rTableRow">
+		<div class="rTableCell">
+			<input type="submit"/>
+		</div>
+	</div>
+	</form>
+</div>
+
+{% include 'footer.twig' %}

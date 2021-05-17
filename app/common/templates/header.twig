@@ -1,0 +1,62 @@
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="color_local.css">
+<link rel="stylesheet" type="text/css" href="./common/style.css">
+<link rel="stylesheet" type="text/css" href="./common/jquery-ui-1.12.1/jquery-ui.min.css">
+<link rel="icon" type="image/png" href="img/favicon.png" />
+
+<script src="./common/jquery-3.3.1.min.js"></script>
+<script src="./common/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<!--script src="jquery-validation-1.17.0/additional-methods.min.js"></script-->
+<script src="./common/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+</head>
+<body>
+
+{% if want_menu == true %}
+<div id='cssmenu'>
+	<ul>
+		<li><a href='index.php'><span>Home</span></a></li>
+		<li><a href='basket.php'><span>Basket</span></a></li>
+		<li><a href='about.php'><span>About</span></a></li>
+	{% if user_id != -1 %}
+		<li class='has-sub'><a href='#'><span>Database Management</span></a>
+		  <ul>
+				<li><a href='manage_meta.php?table=record'><span>Records</span></a></li>
+				<li><a href='manage_meta.php?table=production'><span>Productions</span></a></li>
+				<li><a href='manage_meta.php?table=speaker'><span>Speakers</span></a></li>
+				<li><a href='remake_db.php'><span>Recalculate database</span></a></li>
+		  </ul>
+	   </li>
+	   <li><a href='edit.php'><span>Add element</span></a></li>
+	   <li class='last'><a href='login.php?logout=1'><span>Logout</span></a></li>
+	
+	</script>
+	{% else %}
+		<li><a href='login.php'><span>Admin</span></a></li>
+	{% endif %}		
+	</ul>
+	{% if submenu is defined and submenu != ""%}
+		{{submenu|raw}}
+	{% endif %}
+	
+	</div>
+	<br/>
+	<script type="text/javascript">
+		( function( $ ) {
+		$( document ).ready(function() {
+		$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
+			$('#cssmenu #menu-button').on('click', function(){
+				var menu = $(this).next('ul');
+				if (menu.hasClass('open')) {
+					menu.removeClass('open');
+				}
+				else {
+					menu.addClass('open');
+				}
+			});
+		});
+		} )( jQuery );
+	</script>
+{% endif %}
+<div id="main">

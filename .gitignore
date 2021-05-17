@@ -1,0 +1,27 @@
+# IDE
+.idea
+
+# Folders
+logs/nginx/*
+data/mysql/*
+data/mysql_dump/*
+
+# Test folder
+config/nginx/tests
+config/php/tests
+config/ssl/tests
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+
+# Save empty gitkeep file
+!.gitkeep
+
+# Logs
+*.log
+

@@ -1,0 +1,14 @@
+{% include 'header.twig' %}
+<div class="center">
+	<h1>Login</h1><br/>&nbsp;
+</div>
+<div class="center" id="login">
+	<form method="POST">
+	<input type="hidden" name="act" value="login"/>
+	<div>Login<br/><input type="text" name="login"><br/>&nbsp;<br/></div>
+	<div>Password<br/><input type="password" name="pass"><br/>&nbsp;<br/></div>
+	<div><input type="submit"></div>
+	</form>
+</div>
+
+{% include 'footer.twig' %}

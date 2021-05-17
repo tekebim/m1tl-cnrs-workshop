@@ -1,0 +1,26 @@
+<div>
+	<span class="label">{{ meta.label }}</span>
+	from&nbsp;<input size="5" autocomplete="off" data-rule-number="true" type="text" name="value[{{meta.id}}][0]" value="{{value[0]}}" id="{{meta.id}}_0"/>
+	<img class="action_icon" onclick="javascript:clear_elt('{{meta.id}}_0');" src="img/inactive.png"/> 
+	to&nbsp;<input size="5" autocomplete="off" type="text" name="value[{{meta.id}}][1]" data-rule-number="true" value="{{value[1]}}" id="{{meta.id}}_1"/>
+	<img class="action_icon" onclick="javascript:clear_elt('{{meta.id}}_1');" src="img/inactive.png"/> 
+</div>
+<div class="slider" id="slider-{{meta.id}}"></div> 
+<br clear="both">
+<script type="text/javascript">
+$(function() {
+		$( "#slider-{{meta.id}}" ).slider({
+		   range:true,
+		   min: {{ meta.minval }},
+		   max: {{ meta.maxval }},
+		   values: [ 
+			{% if value[0] != "" %}{{value[0]}}{% else %}{{ meta.minval }}{% endif %}, 
+			{% if value[1] != "" %}{{value[1]}}{% else %}{{ meta.maxval }}{% endif %},
+		   ],
+		   slide: function( event, ui ) {
+			 $( "#{{meta.id}}_0" ).val( ui.values[ 0 ]);
+			 $( "#{{meta.id}}_1" ).val( ui.values[ 1 ]);
+		   }
+		});
+	 });
+</script>

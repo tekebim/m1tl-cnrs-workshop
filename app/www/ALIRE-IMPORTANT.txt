@@ -1,0 +1,1 @@
+Faire un lien symbolique common/ dans ce repertoire vers le repertoire common/ fournis
