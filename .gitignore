@@ -3,7 +3,6 @@
 
 # Folders
 logs/nginx/*
-data/mysql/*
 data/mysql_dump/*
 
 # Test folder

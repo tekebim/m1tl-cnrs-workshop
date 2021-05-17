@@ -14,6 +14,7 @@ Le but de cette commande est d'installer les dépendance PHP / MYSQL / NGINX pou
 Modifier le vhost pour le nom de domaine en local :
 - Sur mac, le fichier est /etc/hosts
 
+```sudo vim /etc/hosts```
 Il faut ajouter :
 ```
 127.0.0.1 workshop-cnrs.docker
