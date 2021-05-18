@@ -2,7 +2,7 @@
 $ajax = false;
 $need_auth = false;
 $want_menu = true;
-require_once("./common/init.php");
+require_once("init.php");
 
 function str_to_sqldate($str){
 	$tmp = explode("/",$str);
@@ -89,8 +89,8 @@ foreach($values as $meta_id=>$vals){
 			$wheres[] = $fname." LIKE '%".$min."%' ";
 		}
 	}
-	
-		
+
+
 }
 $SQL = "SELECT r.id as record_id, r.*, p.*, s.* from record_flat as r inner join production_flat as p on p.record_id = r.id inner join speaker_flat as s on s.id = p.speaker_id";
 $SQL .= " WHERE ".join(" AND ",$wheres);

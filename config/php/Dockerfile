@@ -45,6 +45,7 @@ RUN apt-get update -qq && \
     pdo_mysql \
     pdo_pgsql \
     pgsql \
+    gd \
     soap \
     sockets \
     xmlrpc \

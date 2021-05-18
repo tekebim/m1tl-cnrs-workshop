@@ -5,6 +5,7 @@ services:
   # Database
   #######################################
   db:
+    platform: linux/x86_64
     image: mysql:${MYSQL_VERSION}
     ports:
       - ${IP}:3316:3306
@@ -45,7 +46,7 @@ services:
     image: nginx:${NGINX_VERSION}
     volumes:
       - './config/nginx/site.conf:/etc/nginx/conf.d/site.conf'
-      - './app/www:/var/www/html'
+      - './app:/var/www/html'
       - './logs/nginx/:/var/log/nginx'
     ports:
       - '80:80'
@@ -69,7 +70,7 @@ services:
         PHP_VERSION: ${PHP_VERSION}
         NODE_VERSION: ${NODE_VERSION}
     volumes:
-      - './app/www:/var/www/html'
+      - './app:/var/www/html'
       - './logs/mysql/mysql.log:/var/log/mysql/general-log.log'
     depends_on:
       - db
