@@ -3,7 +3,7 @@
 
 spl_autoload_register(function ($classname) {
     $dirs = array (
-        './common/Twig-3.x/' #./path/to/dir_where_src_renamed_to_Twig_is_in
+        '../common/Twig-3.x/' #./path/to/dir_where_src_renamed_to_Twig_is_in
     );
 
     foreach ($dirs as $dir) {
@@ -16,7 +16,8 @@ spl_autoload_register(function ($classname) {
 
 });
 
-$loader = new \Twig\Loader\FilesystemLoader(['./local_templates','./common/templates']);
+$loader = new \Twig\Loader\FilesystemLoader(['../common/templates', './local_templates']);
+// $loader = new \Twig\Loader\FilesystemLoader(['./local_templates','./templates']);
 $twig = new \Twig\Environment($loader, [
     'cache' => false,
 ]);
@@ -44,7 +45,7 @@ if(isset($need_auth)){
 	$twig->addGlobal('need_auth', false);
 }
 require_once("./incl/DBParam.php");
-require_once("./common/DatabaseHandler.php");
+require_once("../common/DatabaseHandler.php");
 
 $dbh = new DatabaseHandler($dbHost, $dbUser, $dbPassword, $dbName, $port);
 

@@ -2,14 +2,14 @@
 <head>
 <title></title>
 <link rel="stylesheet" type="text/css" href="color_local.css">
-<link rel="stylesheet" type="text/css" href="./common/style.css">
-<link rel="stylesheet" type="text/css" href="./common/jquery-ui-1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="../common/style.css">
+<link rel="stylesheet" type="text/css" href="../common/jquery-ui-1.12.1/jquery-ui.min.css">
 <link rel="icon" type="image/png" href="img/favicon.png" />
 
-<script src="./common/jquery-3.3.1.min.js"></script>
-<script src="./common/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script src="../common/jquery-3.3.1.min.js"></script>
+<script src="../common/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <!--script src="jquery-validation-1.17.0/additional-methods.min.js"></script-->
-<script src="./common/jquery-validation-1.17.0/jquery.validate.min.js"></script>
+<script src="../common/jquery-validation-1.17.0/jquery.validate.min.js"></script>
 </head>
 <body>
 
@@ -30,16 +30,16 @@
 	   </li>
 	   <li><a href='edit.php'><span>Add element</span></a></li>
 	   <li class='last'><a href='login.php?logout=1'><span>Logout</span></a></li>
-	
+
 	</script>
 	{% else %}
 		<li><a href='login.php'><span>Admin</span></a></li>
-	{% endif %}		
+	{% endif %}
 	</ul>
 	{% if submenu is defined and submenu != ""%}
 		{{submenu|raw}}
 	{% endif %}
-	
+
 	</div>
 	<br/>
 	<script type="text/javascript">
