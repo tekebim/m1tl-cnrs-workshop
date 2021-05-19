@@ -1,0 +1,84 @@
+# Author & Maintainer : Michael RABET
+version: '3'
+services:
+  #######################################
+  # Database
+  #######################################
+  db:
+    platform: linux/x86_64
+    image: mysql:${MYSQL_VERSION}
+    ports:
+      - ${IP}:3316:3306
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    volumes:
+      - './data/init:/docker-entrypoint-initdb.d'
+      - './data/mysql:/var/lib/mysql'
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    networks:
+      - my_network
+  #######################################
+  # Tools
+  #######################################
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    ports:
+      - ${IP}:8091:80
+    links:
+      - db:db
+    networks:
+      - my_network
+  #######################################
+  # Server
+  #######################################
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - './config/nginx/site.conf:/etc/nginx/conf.d/site.conf'
+      - './app:/var/www/html'
+      - './logs/nginx/:/var/log/nginx'
+    ports:
+      - '80:80'
+      # - '8089:80' (test in case of port conflict)
+    restart: always
+    depends_on:
+      - php
+      - db
+    networks:
+      my_network:
+        aliases:
+          - workshop-cnrs.docker
+          - docker_my_network
+  #######################################
+  # Application
+  #######################################
+  php:
+    build:
+      context: ./config/php
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        NODE_VERSION: ${NODE_VERSION}
+    volumes:
+      - './app:/var/www/html'
+      - './logs/mysql/mysql.log:/var/log/mysql/general-log.log'
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
