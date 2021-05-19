@@ -1,4 +1,7 @@
 :root {
+  --body-primary: #FF0000;
+  --body-primary-darken: #c40000;
+
   --body-color: #00FF00;
   --body-background-color: #FFEFD5;
 

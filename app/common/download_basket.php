@@ -2,7 +2,8 @@
 $ajax = true;
 $need_auth = false;
 $want_menu = false;
-require_once("./common/init.php");
+require_once("environnement.php");
+require_once($_ENV["RELATIVE_PATH"] . "common/init.php");
 
 if(!isset($_SESSION["basket"])){
 	$_SESSION["basket"] = [];

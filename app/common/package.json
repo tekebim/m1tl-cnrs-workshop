@@ -1,0 +1,40 @@
+{
+  "name": "cnrs-sorbonne-nouvelle",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --mode=development --open",
+    "build:css": "postcss src/styles/style.css -o dist/assets/css/main.css",
+    "build-js": "export NODE_ENV=production && webpack",
+    "build": "postcss src/styles/style.css -o dist/assets/css/main.css && export NODE_ENV=production && webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.12.1-migrate",
+    "tailwindcss": "^2.1.2",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-jquery-ui": "^2.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "cssnano": "^5.0.2",
+    "postcss": "^8.2.15",
+    "postcss-cli": "^8.3.1",
+    "postcss-loader": "^5.3.0",
+    "postcss-preset-env": "^6.7.0",
+    "style-loader": "^2.0.0"
+  }
+}

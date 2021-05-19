@@ -15,6 +15,9 @@ config/ssl/tests
 .env.*
 !.env.example
 
+# Node modules
+app/common/node_modules
+
 # IDE
 .idea
 
