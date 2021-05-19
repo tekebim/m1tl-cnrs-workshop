@@ -21,7 +21,11 @@ $loader = new \Twig\Loader\FilesystemLoader(['../common/templates', './local_tem
 // $loader = new \Twig\Loader\FilesystemLoader(['./local_templates','./templates']);
 $twig = new \Twig\Environment($loader, [
     'cache' => false,
+    'debug' => true,
 ]);
+
+$twig->addExtension(new \Twig\Extension\DebugExtension());
+
 
 // require_once '/path/to/vendor/autoload.php';
 // require_once("Twig/Autoloader.php");
