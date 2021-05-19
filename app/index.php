@@ -1,2 +1,2 @@
 <h1>CNRS Workshop</h1>
-<a href="/marquisis/index.php">Access sub-site</a>
+<a href="/muriquis/index.php">Access "Muriquis" sub-site</a>
