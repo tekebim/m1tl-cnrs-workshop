@@ -17,6 +17,7 @@ config/ssl/tests
 
 # Node modules
 app/common/node_modules
+node_modules/
 
 # IDE
 .idea
