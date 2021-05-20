@@ -1,9 +1,9 @@
 // tailwind.config.js
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: false,
     content: [
-      './src/**/*.php',
+      './**/*.php',
       './src/**/*.js',
     ]
   },
