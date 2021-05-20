@@ -13,40 +13,42 @@
 </head>
 <body>
 
-{% if want_menu == true %}
-    <header>
-        <div id='cssmenu'>
-            <ul>
-                <li><a href='index.php'><span>Home</span></a></li>
-                <li><a href='basket.php'><span>Basket</span></a></li>
-                <li><a href='about.php'><span>About</span></a></li>
-                {% if user_id != -1 %}
-                    <li class='has-sub'><a href='#'><span>Database Management</span></a>
-                        <ul>
-                            <li><a href='manage_meta.php?table=record'><span>Records</span></a></li>
-                            <li><a href='manage_meta.php?table=production'><span>Productions</span></a></li>
-                            <li><a href='manage_meta.php?table=speaker'><span>Speakers</span></a></li>
-                            <li><a href='remake_db.php'><span>Recalculate database</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href='edit.php'><span>Add element</span></a></li>
-                    <li class='last'><a href='login.php?logout=1'><span>Logout</span></a></li>
 
-                    </script>
-                {% else %}
-                    <li><a href='login.php'><span>Admin</span></a></li>
-                {% endif %}
-            </ul>
-            {% if submenu is defined and submenu != "" %}
-                {{ submenu|raw }}
-            {% endif %}
-        </div>
-    </header>
-{% endif %}
 
 <div class="bg-white">
-    <nav class="flex px-4 border-b md:shadow-lg items center relative">
-        <div class="text-lg font-bold md:py-0 py-3">Logo</div>
+    <nav class="navbar">
+    <div class="">Logo</div>
+    
+    <ul class="md:flex md:px-2 md:relative top-full ">
+        <li><a href="index.php" class="navbar-li hover"><span>Home</span></a></li>
+        <li><a href="about.php" class="navbar-li hover"><span>About us</span></a></li>
+        
+        <li class="relative parent"><a href="#" class="navbar-li hover justify-between space-x-2 bg-red-300"><span>Database Management</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
+        </a>
+            <ul class="child transition duration-300 top-full right-0 md:w-48 bg-white md:shadow-lg md:rounded-b hidden">
+                <li><a href="manage_meta.php?table=record" class="sub-navbar-li hover">Records</a></li>
+                <li><a href="manage_meta.php?table=production" class="sub-navbar-li hover">Productions</a></li>
+                <li><a href="manage_meta.php?table=speaker" class="sub-navbar-li hover">Speakers</a></li>
+                <!--<li><a href="remake_db.php" class="sub-navbar-li hover">Recalculate database</a></li>-->
+                <li><a href="#" class="sub-navbar-li hover">Recalculate database</a></li>
+            </ul>
+        </li>
+        <li><a href='edit.php' class="navbar-li hover"><span>Add element</span></a></li>
+        <li class='last'><a href='login.php?logout=1' class="navbar-li hover"><span>Logout</span></a></li>
+      
+        <li><a href="login.php" class="navbar-li hover"><span>Admin</span></a></li>
+       
+        <li><a href="basket.php" class="navbar-li hover"><span>Selection</span></a></li>
+    </ul>
+    <div class="ml-auto md:hidden text-gray-500 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+        </svg>
+    </div>
+    
+
+
     </nav>
 </div>
 

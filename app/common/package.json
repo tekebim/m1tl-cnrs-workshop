@@ -9,7 +9,8 @@
     "start": "webpack serve --mode=development --open",
     "build:css": "postcss src/styles/style.css -o dist/assets/css/main.css",
     "build-js": "export NODE_ENV=production && webpack",
-    "build": "postcss src/styles/style.css -o dist/assets/css/main.css && export NODE_ENV=production && webpack"
+    "build": "postcss src/styles/style.css -o dist/assets/css/main.css && export NODE_ENV=production && webpack",
+    "watch": "postcss src/styles/style.css -o dist/assets/css/main.css -w"
   },
   "keywords": [],
   "author": "",
