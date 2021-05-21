@@ -18,7 +18,7 @@ spl_autoload_register(function ($classname) {
 });
 
 // $loader = new \Twig\Loader\FilesystemLoader(['./local_templates','../common/templates']);
-$loader = new \Twig\Loader\FilesystemLoader(['../common/templates', './local_templates']);
+$loader = new \Twig\Loader\FilesystemLoader([__DIR__ . '/templates', './local_templates']);
 $twig = new \Twig\Environment($loader, [
     'cache' => false,
     'debug' => true,
@@ -42,7 +42,7 @@ if (isset($ajax)) {
 if (isset($want_menu)) {
     $twig->addGlobal('want_menu', $want_menu);
 } else {
-    $twig->addGlobal('want_menu', false);
+    $twig->addGlobal('want_menu', true);
 }
 if (isset($need_auth)) {
     $twig->addGlobal('need_auth', $need_auth);

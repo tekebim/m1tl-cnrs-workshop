@@ -35,6 +35,6 @@ echo $twig->render('manage_meta.twig', array(
     "table" => $table_name,
     "required" => $required_fields,
     "meta" => $meta_fields,
-    "sitename" => _SITE_NAME_
+    "projectName" => _PROJECT_NAME_
 ));
 ?>
