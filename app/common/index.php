@@ -22,7 +22,6 @@ for ($i = 0; $i < count($tables); $i++) {
 $metas["record"][] = array("id" => "-1", "field_name" => "filename", "type" => "txt", "label" => "Filename");
 $metas_field["-1"] = array("field_name" => "filename", "type" => "txt");
 
-
 for ($i = 0; $i < count($tables); $i++) {
     $SQL = 'select m.*, CASE WHEN m.type = "int" THEN min(mv.int_val) WHEN m.type = "float" THEN min(mv.float_val) ELSE NULL END as minval, CASE WHEN m.type = "int" THEN max(mv.int_val) WHEN m.type = "float" THEN max(mv.float_val) ELSE NULL END as maxval from `meta` as m left join `meta_values` as mv on mv.meta_id = m.id where m.active = 1 and m.table_name = "' . $tables[$i] . '" group by m.id';
     $res = $dbh->executeQuery($SQL);
@@ -32,7 +31,6 @@ for ($i = 0; $i < count($tables); $i++) {
         $metas_field[$row["id"]] = array("field_name" => $row["field_name"], "type" => $row["type"]);
     }
 }
-
 
 $values = [];
 if (isset($_POST["value"])) {

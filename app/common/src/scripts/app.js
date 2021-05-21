@@ -69,46 +69,6 @@ const isHome = () => {
  */
 const isBasket = () => {
   console.log('basket page');
-
-
-  $("#edit_form").validate();
-
-  function add_to_basket(rid) {
-    $.ajax
-    ({
-      url: 'add_to_basket.php',
-      data: "rid=" + rid + "&act=add",
-      type: 'post',
-      success: function (result) {
-        $('#b_' + rid + '_add').hide();
-        $('#b_' + rid + '_rem').show();
-      }
-    });
-  }
-
-  function rem_from_basket(rid) {
-    $.ajax
-    ({
-      url: 'add_to_basket.php',
-      data: "rid=" + rid + "&act=rem",
-      type: 'post',
-      success: function (result) {
-        $('#b_' + rid + '_rem').hide();
-        $('#b_' + rid + '_add').show();
-      }
-    });
-  }
-
-  function clear_elt(element_id) {
-    $('#' + element_id).val('');
-  }
-
-  $(function () {
-    $(".dp").datepicker({
-      dateFormat: "dd/mm/yy",
-    });
-  });
-
 }
 
 /**
