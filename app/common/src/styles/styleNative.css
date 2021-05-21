@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.table-results {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+body {
+    color: var(--body-color);
+    font-weight: bold;
+    background-color: var(--body-background-color);
+    font-family: georgia, serif;
+}
+
+.center {
+    margin-right: auto;
+    text-align: center;
+
+}
+
+/***** Navbar *******/
+.navbar {
+    @apply flex border-b bg-green-100 justify-between  items-center relative;
+}
+
+.navbar > ul {
+    @apply   justify-end bg-blue-100 space-x-3 top-full left-0;
+}
+.navbar-li > ul {
+    @apply child transition duration-300 top-full right-0 bg-white;
+}
+
+.logo {
+    @apply text-lg font-bold;
+}
+.sub-navbar-li {
+    @apply flex px-4 py-3;
+}
+.navbar-li {
+    @apply flex p-4 items-center;
+}
+.hover:hover{
+    @apply bg-gray-500;
+}
+
+
+@screen md {
+    .navbar {
+        @apply shadow-lg items-center relative ;
+    }
+    .navbar > ul {
+        @apply px-2 space-x-2 relative ;
+    }
+   
+    .logo{
+        @apply py-6;
+    }
+    .navbar-ul{
+        @apply top-full right-0;
+    }
+    .navbar-li {
+        @apply inline-flex p-4 ;
+    }
+
+}
+@media only screen and (min-width: 768px){
+    .parent:hover .child {
+        opacity:1;
+        height:auto;
+        overflow:none;
+        transform: translateY(0);
+    }
+    .child {
+        opacity:0;
+        height:0;
+        overflow:hidden;
+        transform: translateY(-10%);
+    }
+}
+
+
+
+/****** FILTERS *****/
+.queryfilterglobal {
+    display: inline;
+}
+
+.queryfilter {
+    float: left;
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    padding: 10px;
+    width: auto;
+    height: auto;
+    background-color: var(--menu-bg-color);
+    color: var(--menu-text-color);
+    font-weight: normal;
+}
+
+.queryfilter input {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.queryfilter .label {
+    color: var(--menu-text-inverse-color);;
+    background-color: var(--menu-text-color);
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+    height: 20px;
+}
+
+.queryfilter .slider {
+    width: 300px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+    background-color: var(--body-background-color);
+    color: var(--body-color);
+}
+
+/****** TABLE ******/
+.rTable {
+    display: table;
+    width: 99%;
+}
+
+.rTable .odd {
+    background-color: var(--table-odd-background-color);
+    color: var(--table-odd-color);
+}
+
+.rTable .even {
+    background-color: var(--table-even-background-color);
+    color: var(--table-even-color);
+}
+
+.rTableRow {
+    display: table-row;
+    background-color: var(--table-even-background-color);
+    color: var(--table-odd-color);
+}
+
+.rTableRow:hover {
+    background-color: var(--table-hover-background-color);
+    color: var(--table-hover-color);
+}
+
+.rTableCell, .rTableHead {
+    display: table-cell;
+    padding: 3px 10px;
+    border: 1px solid var(--table-cell-border-color);
+    font-weight: normal;
+}
+
+.rTableHeadCell {
+    color: var(--table-header-color);
+    display: table-cell;
+    background-color: var(--table-header-background-color);
+    font-weight: bold;
+    width: 10%;
+    padding: 3px 10px;
+    border: 1px solid var(--table-cell-border-color);
+}
+
+.rTableHeading {
+    color: var(--table-header-color);
+    display: table-header-group;
+    background-color: var(--table-header-background-color);
+    font-weight: bold;
+}
+
+.rTableFoot {
+    display: table-footer-group;
+    font-weight: bold;
+    background-color: #ddd;
+}
+
+.rTableBody {
+    display: table-row-group;
+}
+
+
+/****** MENU *******/
+/*@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);*/
