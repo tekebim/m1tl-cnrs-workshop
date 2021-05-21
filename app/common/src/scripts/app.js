@@ -1,4 +1,8 @@
 import $ from 'jquery';
+import 'alpinejs';
+import inView from 'in-view';
+import gsap from 'gsap';
+import customForm from './components/form';
 
 /**
  * Init function
@@ -38,13 +42,26 @@ const commons = () => {
       menu.addClass('open');
     }
   });
+
+  inView('.to-animate')
+    .on('enter', el => {
+      gsap.to(el,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.25,
+          ease: "linear",
+        },
+      );
+    });
 }
 
 /**
  * Functions for home page
  */
 const isHome = () => {
-  console.log('index page')
+  console.log('index page');
+  customForm.init();
 }
 
 /**

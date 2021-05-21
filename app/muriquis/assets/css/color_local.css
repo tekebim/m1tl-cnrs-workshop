@@ -1,8 +1,11 @@
 :root {
-  --body-primary: #FF0000;
-  --body-primary-darken: #c40000;
+  --body-primary: #2f3373;
+  --body-primary-darken: #1e2151;
 
-  --body-color: #00FF00;
+  --body-secondary: #c44343;
+  --body-secondary-darken: #852d2d;
+
+  --body-color: #2f3373;
   --body-background-color: #FFEFD5;
 
   --menu-text-color: #ffffff;
