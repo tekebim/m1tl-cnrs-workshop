@@ -73,13 +73,17 @@ class ProjectConfig
                         echo 'A directory already exist with this slug. Please rename the project with another unique name.';
                         return;
                     }
+                    $currentDir = $configJson['config']['projectSlug'];
+                    $updateDir = $_POST['project-slug'];
+                } else {
+                    // By default no need to update directory name
+                    $updateDir = false;
                 }
 
                 $newColorPrimary = htmlspecialchars($_POST['project-color-primary']);
                 $newColorSecondary = htmlspecialchars($_POST['project-color-secondary']);
                 $newColorPrimaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-primary']), -0.2);
                 $newColorSecondaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-secondary']), -0.2);
-
 
                 $colors = [
                     'currentColorPrimary' => $configJson['config']['projectColorPrimary'],
@@ -104,9 +108,19 @@ class ProjectConfig
 
                 // Save modifications to the json file
                 file_put_contents($this->fileConfig, json_encode($configJson));
+
+                // If projet slug name need to be update
+                if ($updateDir) {
+                    rename('./../' . $currentDir, './../' . $updateDir);
+                    $currentPath = $_SERVER['PHP_SELF'];
+                    $newPath = str_replace($currentDir, $updateDir, $currentPath);
+                    header('Location: ' . $newPath);
+                    die();
+                }
             }
         }
         header('Location: ' . $_SERVER['PHP_SELF']);
+        die();
     }
 
     /**
