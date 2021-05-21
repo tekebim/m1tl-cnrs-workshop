@@ -31,3 +31,5 @@ node_modules/
 # Original app
 app/origin
 
+*bundle.js.LICENSE.txt
+
