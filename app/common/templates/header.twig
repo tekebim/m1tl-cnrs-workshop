@@ -1,7 +1,7 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../common/jquery-ui-1.12.1/jquery-ui.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="../common/jquery-ui-1.12.1/jquery-ui.min.css">-->
     <link rel="stylesheet" type="text/css" href="assets/css/color_local.css">
     <link rel="stylesheet" type="text/css" href="../common/dist/assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
@@ -9,31 +9,49 @@
     <!--<script src="../common/vendors/jquery-ui/jquery-ui.min.js"></script>-->
     <!--script src="../common/vendors/jquery-validation/additional-methods.min.js"></script-->
     <!--<script src="../common/vendors/jquery-validation/jquery.validate.min.js"></script>-->
-
 </head>
 <body>
 
 {% if want_menu == true %}
-    <header>
+    <header class="sticky top-0 z-50">
+        {% if user_id != -1 %}
+            <nav class="relative select-none bg-red-800 lg:flex lg:items-stretch w-full">
+                <div class="flex flex-no-shrink items-stretch h-12">
+                    <a href="#"
+                       class="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Admin</a>
+                    <button class="block lg:hidden cursor-pointer ml-auto relative w-12 h-12 p-4">
+                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                        </svg>
+                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow">
+                    <div class="lg:flex lg:items-stretch lg:justify-end ml-auto">
+                        <a href="#"
+                           class="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Database
+                            Management
+                        </a>
+                        <a href="edit_meta.php"
+                           class="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Add
+                            element
+                        </a>
+                        <a href='login.php?logout=1'
+                           class="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Logout</a>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        {% endif %}
+
         <div id='cssmenu'>
             <ul>
                 <li><a href='index.php'><span>Home</span></a></li>
-                <li><a href='basket.php'><span>Basket</span></a></li>
                 <li><a href='about.php'><span>About</span></a></li>
-                {% if user_id != -1 %}
-                    <li class='has-sub'><a href='#'><span>Database Management</span></a>
-                        <ul>
-                            <li><a href='manage_meta.php?table=record'><span>Records</span></a></li>
-                            <li><a href='manage_meta.php?table=production'><span>Productions</span></a></li>
-                            <li><a href='manage_meta.php?table=speaker'><span>Speakers</span></a></li>
-                            <li><a href='remake_db.php'><span>Recalculate database</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href='edit.php'><span>Add element</span></a></li>
-                    <li class='last'><a href='login.php?logout=1'><span>Logout</span></a></li>
-
-                    </script>
-                {% else %}
+                <li><a href='basket.php'><span>Selection</span></a></li>
+                {% if user_id == -1 %}
                     <li><a href='login.php'><span>Admin</span></a></li>
                 {% endif %}
             </ul>

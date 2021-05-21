@@ -1,36 +1,47 @@
-<div class="rTableCell">
-    <img id="b_{{ data[0]["record_id"] }}_add" class="action_icon"
-         onclick="javascript:add_to_basket({{ data[0]["record_id"] }})" src="img/emprunter.png"
-         {% if data[0]["in_basket"] %}style='display:none'{% endif %}/>
-    <img id="b_{{ data[0]["record_id"] }}_rem" class="action_icon"
-         onclick="javascript:rem_from_basket({{ data[0]["record_id"] }})" src="img/inactive.png"
-         {% if not data[0]["in_basket"] %}style='display:none'{% endif %}/>
-</div>
-{% for met in metas["record"] %}
-    <div class="rTableCell">{{ data[0][met["field_name"]] }}</div>
-{% endfor %}
-<div class="rTableCell">
-    {% for line in data %}
-        {{ line["sequence_order"] }}<br/>
+<tr data-id="{{ data[0]["record_id"] }}" class="to-animate">
+    <td class="px-5 py-5 bg-white text-sm">
+        <div class="flex">
+            <svg id="b_{{ data[0]["record_id"] }}_add"
+                 class="w-6 h-6 action_icon action--add {% if data[0]["in_basket"] %}selected{% endif %}"
+                 onclick="javascript:add_to_basket({{ data[0]["record_id"] }})" width="24" height="24"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 2c-1.654 0-3 1.346-3 3v14c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3v-14c0-1.654-1.346-3-3-3h-14zm19 3v14c0 2.761-2.238 5-5 5h-14c-2.762 0-5-2.239-5-5v-14c0-2.761 2.238-5 5-5h14c2.762 0 5 2.239 5 5z"/>
+            </svg>
+            <svg id="b_{{ data[0]["record_id"] }}_rem" class="w-6 h-6 action_icon action--remove"
+                 onclick="javascript:rem_from_basket({{ data[0]["record_id"] }})" width="24" height="24"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.041 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591zm-5.041-15c-1.654 0-3 1.346-3 3v14c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3v-14c0-1.654-1.346-3-3-3h-14zm19 3v14c0 2.761-2.238 5-5 5h-14c-2.762 0-5-2.239-5-5v-14c0-2.761 2.238-5 5-5h14c2.762 0 5 2.239 5 5z"/>
+            </svg>
+        </div>
+    </td>
+    {% for met in metas["record"] %}
+        <td class="px-5 py-5 bg-white text-sm">
+            <span>{{ data[0][met["field_name"]] }}</span>
+        </td>
     {% endfor %}
-</div>
-{% for met in metas["production"] %}
-    <div class="rTableCell">
+    <td class="px-5 py-5 bg-white text-sm">
         {% for line in data %}
-            {{ line[met["field_name"]] }}<br/>
+            <span>{{ line["sequence_order"] }}</span>
         {% endfor %}
-    </div>
-{% endfor %}
-{% for met in metas["speaker"] %}
-    <div class="rTableCell">
-        {% for line in data %}
-            {{ line[met["field_name"]] }}<br/>
-        {% endfor %}
-    </div>
-{% endfor %}
-<div class="rTableCell">
-    <audio controls preload="none">
-        <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
-</div>
+    </td>
+    {% for met in metas["production"] %}
+        <td class="px-5 py-5 bg-white text-sm">
+            {% for line in data %}
+                <span>{{ line[met["field_name"]] }}</span>
+            {% endfor %}
+        </td>
+    {% endfor %}
+    {% for met in metas["speaker"] %}
+        <td class="px-5 py-5 bg-white text-sm">
+            {% for line in data %}
+                <span>{{ line[met["field_name"]] }}</span>
+            {% endfor %}
+        </td>
+    {% endfor %}
+    <td class="px-5 py-5 bg-white text-sm">
+        <audio controls preload="none">
+            <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </td>
+</tr>
