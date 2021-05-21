@@ -49,8 +49,6 @@ else {
         $row["in_basket"] = in_array($row["record_id"], $basket);
         $data[$row["record_id"]][] = $row;
     }
-
-    echo 'no filter';
 }
 echo $twig->render('index.twig', array(
         "metas" => $metas,
