@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.14.2",
     "alpinejs": "^2.8.2",
     "gsap": "^3.6.1",
+    "in-view": "^0.6.1",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
