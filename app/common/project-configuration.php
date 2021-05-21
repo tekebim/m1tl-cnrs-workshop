@@ -5,6 +5,7 @@ class ProjectConfig
     public $template;
     public $fileConfig;
     public $fileConfigPath;
+    public $fileCSSColors;
 
     public function __construct()
     {
@@ -19,6 +20,7 @@ class ProjectConfig
             "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
             "projectColorSecondary" => _PROJECT_COLOR_SECONDARY_));
         // Initialize
+        $this->fileCSSColors = "./assets/css/color_local.css";
         $this->fileConfig = "./config/project.json";
         $this->fileConfigPath = file_get_contents($this->fileConfig);
         $this->init();
@@ -73,18 +75,53 @@ class ProjectConfig
                     }
                 }
 
+                $newColorPrimary = htmlspecialchars($_POST['project-color-primary']);
+                $newColorSecondary = htmlspecialchars($_POST['project-color-secondary']);
+                $newColorPrimaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-primary']), -0.2);
+                $newColorSecondaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-secondary']), -0.2);
+
+
+                $colors = [
+                    'currentColorPrimary' => $configJson['config']['projectColorPrimary'],
+                    'currentColorPrimaryDarken' => $configJson['config']['projectColorPrimaryDarken'],
+                    'currentColorSecondary' => $configJson['config']['projectColorSecondary'],
+                    'currentColorSecondaryDarken' => $configJson['config']['projectColorSecondaryDarken'],
+                    'newColorPrimary' => $newColorPrimary,
+                    'newColorPrimaryDarken' => $newColorPrimaryDarken,
+                    'newColorSecondary' => $newColorSecondary,
+                    'newColorSecondaryDarken' => $newColorSecondaryDarken,
+                ];
+
+                // Update local variable in CSS
+                $this->updateCSSFile($colors);
+
                 $configJson['config']['projectSlug'] = htmlspecialchars($_POST['project-slug']);
                 $configJson['config']['projectName'] = htmlspecialchars($_POST['project-name']);
-                $configJson['config']['projectColorPrimary'] = htmlspecialchars($_POST['project-color-primary']);
-                $configJson['config']['projectColorPrimaryDarken'] = $this->adjustBrightness(htmlspecialchars($_POST['project-color-primary']), -0.2);
-                $configJson['config']['projectColorSecondary'] = htmlspecialchars($_POST['project-color-secondary']);
-                $configJson['config']['projectColorSecondaryDarken'] = $this->adjustBrightness(htmlspecialchars($_POST['project-color-secondary']), -0.2);
+                $configJson['config']['projectColorPrimary'] = $newColorPrimary;
+                $configJson['config']['projectColorPrimaryDarken'] = $newColorPrimaryDarken;
+                $configJson['config']['projectColorSecondary'] = $newColorSecondary;
+                $configJson['config']['projectColorSecondaryDarken'] = $newColorSecondaryDarken;
 
                 // Save modifications to the json file
                 file_put_contents($this->fileConfig, json_encode($configJson));
             }
         }
         header('Location: ' . $_SERVER['PHP_SELF']);
+    }
+
+    /**
+     * Function to update CSS global var
+     */
+    public function updateCSSFile(array $colors)
+    {
+        // Open the CSS file
+        $cssString = file_get_contents($this->fileCSSColors);
+        $cssString = str_replace($colors['currentColorPrimary'], $colors['newColorPrimary'], $cssString);
+        $cssString = str_replace($colors['currentColorPrimaryDarken'], $colors['newColorPrimaryDarken'], $cssString);
+        $cssString = str_replace($colors['currentColorSecondary'], $colors['newColorSecondary'], $cssString);
+        $cssString = str_replace($colors['currentColorSecondaryDarken'], $colors['newColorSecondaryDarken'], $cssString);
+        // Save changes on file
+        file_put_contents($this->fileCSSColors, $cssString);
     }
 
     /**
