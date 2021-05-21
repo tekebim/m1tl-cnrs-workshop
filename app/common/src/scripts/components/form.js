@@ -1,5 +1,6 @@
 import ionRangeSlider from 'ion-rangeslider';
 import $ from 'jquery';
+import tablesort from 'jquery-tablesort';
 
 const init = () => {
   console.log('init from form');
@@ -23,6 +24,10 @@ const init = () => {
       },
     });
   });
+
+  $('.table-results').tablesort();
+
+  console.log($('.table-results'));
 
   // $("#{{ meta.id }}_0").val(ui.values[0]);
   // $("#{{ meta.id }}_1").val(ui.values[1]);
