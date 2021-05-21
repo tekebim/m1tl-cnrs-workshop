@@ -10,21 +10,25 @@
 <body>
 
 
-  <!-- Header -->
- 
+<!-- Header -->
+
 <header class="sticky top-0 z-50">
-{% if user_id != -1 %}
-    <nav class="flex px-4 border-b  items-center relative bg-blue-200  ">
-        <div class="logo"><a href="login.php" class="navbar-li hover-li"><span>Admin</span></a></div>
-        
-        <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
-            <li class="relative parent"><a href="#" class="flex justify-between md:inline-flex p-4 items-center hover:bg-gray-50 space-x-2">
+    {% if user_id != -1 %}
+        <nav class="flex px-4 border-b  items-center relative bg-blue-200  ">
+            <div class="logo"><a href="login.php" class="navbar-li hover-li"><span>Admin</span></a></div>
+
+            <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
+                <li class="relative parent"><a href="#"
+                                               class="flex justify-between md:inline-flex p-4 items-center hover:bg-gray-50 space-x-2">
                         <span>Database Management</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1" viewBox="0 0 24 24">
+                            <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                        </svg>
                     </a>
                     <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-white md:shadow-lg md:rounded-b ">
                         <li><a href="manage_meta.php?table=record" class="navbar-sub-li hover-li">Records</a></li>
-                        <li><a href="manage_meta.php?table=production" class="navbar-sub-li hover-li">Productions</a></li>
+                        <li><a href="manage_meta.php?table=production" class="navbar-sub-li hover-li">Productions</a>
+                        </li>
                         <li><a href="manage_meta.php?table=speaker" class="navbar-sub-li hover-li">Speakers</a></li>
                         <li><a href="remake_db.php" class="navbar-sub-li hover-li">Recalculate database</a></li>
                     </ul>
@@ -32,28 +36,27 @@
                 <li><a href="edit.php" class="navbar-li hover-li"><span>Add element</span></a></li>
                 <li><a href="login.php?logout=1" class="navbar-li hover-li"><span>Logout</span></a></li>
                 <li><a href="" class="navbar-li hover-li"><span>Configuration</span></a></li>
-        </ul>
-        </nav>
-{% endif %}
-
-
-
-        <nav class="navbar bg-white ">
-            <div class="logo">Logo</div>
-            <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
-                <li><a href="index.php" class="navbar-li hover-li"><span>Home</span></a></li>
-                <li><a href="about.php" class="navbar-li hover-li"><span>About us</span></a></li>
-                <!---->
-                <li><a href="basket.php" class="navbar-li hover-li"><span>Selection</span></a></li>
-                <!-- Admin condition if-->
-                {% if user_id != 1 %}
-                <li><a href="login.php" class="navbar-li hover-li"><span>Admin</span></a></li>
-                {% endif %}
             </ul>
-            <div class="ml-auto md:hidden text-gray-500 cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
-            </div>
         </nav>
+    {% endif %}
+    <nav class="navbar bg-white ">
+        <div class="logo">Logo</div>
+        <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
+            <li><a href="index.php" class="navbar-li hover-li"><span>Home</span></a></li>
+            <li><a href="about.php" class="navbar-li hover-li"><span>About us</span></a></li>
+            <!---->
+            <li><a href="basket.php" class="navbar-li hover-li bg-red-300"><span>Selection</span></a></li>
+            <!-- Admin condition if-->
+            {% if user_id != 1 %}
+                <li><a href="login.php" class="navbar-li hover-li"><span>Admin</span></a></li>
+            {% endif %}
+        </ul>
+        <div class="ml-auto md:hidden text-gray-500 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+            </svg>
+        </div>
+    </nav>
 </header>
 
 
