@@ -1,5 +1,8 @@
-{% include 'header.twig' %}
+{% extends "base.twig" %}
 
+{% block title %}{{ sitename }} - Manage metas{% endblock %}
+
+{% block content %}
 <div>
     <h1>Gestion de la base - table {{ table }}</h1>
 
@@ -28,5 +31,4 @@
     </div>
     <a href="edit_meta.php?metaid=-1&table={{ table }}">Ajouter un nouveau champ optionel</a>
 </div>
-
-{% include 'footer.twig' %}
+{% endblock %}

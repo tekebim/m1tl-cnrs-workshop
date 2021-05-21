@@ -1,7 +1,7 @@
-{% include 'header.twig' %}
+{% extends "base.twig" %}
 
-<div>
-    This is a place holder
-</div>
+{% block title %}{{ sitename }} - About{% endblock %}
 
-{% include 'footer.twig' %}
+{% block content %}
+    <h1>Page about</h1>
+{% endblock %}

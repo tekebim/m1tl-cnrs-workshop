@@ -57,6 +57,9 @@ if ($meta_id > 0) {
 }
 
 echo $twig->render('edit_meta.twig', array(
-    "table" => $table_name, "meta" => $meta, "types" => $allowed_types
+    "table" => $table_name,
+    "meta" => $meta,
+    "types" => $allowed_types,
+    "sitename" => _SITE_NAME_
 ));
 ?>

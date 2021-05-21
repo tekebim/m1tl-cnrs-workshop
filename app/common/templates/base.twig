@@ -1,0 +1,29 @@
+<html>
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+    {% block metas %}
+    <link rel="stylesheet" type="text/css" href="assets/css/color_local.css">
+    <link rel="stylesheet" type="text/css" href="../common/dist/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+    {% endblock %}
+</head>
+<body>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    {% block footer %}
+    Footer ©2021
+    {% endblock %}
+</footer>
+
+{% block scripts %}
+<script src="../common/dist/assets/js/bundle.js"></script>
+<script type="module" src="assets/js/custom.js"></script>
+{% endblock %}
+</body>
+</html>

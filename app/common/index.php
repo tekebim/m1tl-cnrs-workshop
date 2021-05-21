@@ -37,7 +37,6 @@ if (isset($_POST["value"])) {
     $values = $_POST["value"];
 }
 
-
 $wheres = ["1=1"];
 foreach ($values as $meta_id => $vals) {
     $type = $metas_field[$meta_id]["type"];
@@ -125,6 +124,6 @@ echo $twig->render('index.twig', array(
         "values" => $values,
         "results" => $data,
         "basket" => false,
-        "currentPage" => "index"
+        "sitename" => _SITE_NAME_
     )
 );

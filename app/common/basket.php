@@ -55,6 +55,7 @@ echo $twig->render('index.twig', array(
         "values" => $values,
         "results" => $data,
         "basket" => true,
-        "currentPage" => "basket"
+        "currentPage" => "basket",
+        "sitename" => _SITE_NAME_
     )
 );

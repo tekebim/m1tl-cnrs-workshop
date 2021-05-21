@@ -29,7 +29,15 @@ const init = () => {
 
   $("#edit_form").validate();
 
+  let addToBasketBtnAll = document.querySelectorAll('.action--add');
+  let removeToBasketBtnAll = document.querySelectorAll('.action--remove');
+
+  console.log(addToBasketBtnAll);
+  console.log(removeToBasketBtnAll);
+
   function add_to_basket(rid) {
+    console.log('add_to_basket');
+
     $.ajax
     ({
       url: 'add_to_basket.php',

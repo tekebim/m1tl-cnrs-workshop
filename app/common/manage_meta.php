@@ -31,9 +31,10 @@ while ($row = $res->fetch_assoc()) {
     $meta_fields[] = $row;
 }
 
-//var_dump($required_fields, $meta_fields);
-
 echo $twig->render('manage_meta.twig', array(
-    "table" => $table_name, "required" => $required_fields, "meta" => $meta_fields
+    "table" => $table_name,
+    "required" => $required_fields,
+    "meta" => $meta_fields,
+    "sitename" => _SITE_NAME_
 ));
 ?>
