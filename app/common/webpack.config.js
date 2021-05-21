@@ -6,6 +6,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: require.resolve("jquery"),
+        loader: "expose-loader",
+        options: {
+          exposes: {
+            globalName: "$",
+            override: true,
+          },
+        },
+      },
+      {
         test: /\.(js)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
@@ -30,7 +40,7 @@ module.exports = {
       "$": "jquery",
       "jQuery": "jquery",
       "window.jQuery": "jquery",
-      "window.": "jquery"
+      "window.$": "jquery"
     }),
   ],
   devServer: {

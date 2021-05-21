@@ -19,6 +19,7 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
     "alpinejs": "^2.8.2",
+    "expose-loader": "^3.0.0",
     "gsap": "^3.6.1",
     "in-view": "^0.6.1",
     "ion-rangeslider": "^2.3.1",
