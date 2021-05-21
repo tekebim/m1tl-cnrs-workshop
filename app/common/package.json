@@ -9,7 +9,8 @@
     "start": "webpack serve --mode=development --open",
     "build:css": "postcss src/styles/style.css -o dist/assets/css/main.css",
     "build-js": "export NODE_ENV=production && webpack",
-    "build": "postcss src/styles/style.css -o dist/assets/css/main.css && export NODE_ENV=production && webpack"
+    "build": "postcss src/styles/style.css -o dist/assets/css/main.css && export NODE_ENV=production && webpack",
+    "watch": "postcss src/styles/style.css -o dist/assets/css/main.css -w"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,9 @@
   "dependencies": {
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
+    "alpinejs": "^2.8.2",
+    "gsap": "^3.6.1",
+    "ion-rangeslider": "^2.3.1",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
     "jquery-ui-bundle": "^1.12.1-migrate",

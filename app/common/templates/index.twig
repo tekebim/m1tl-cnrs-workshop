@@ -1,5 +1,5 @@
 {% include 'header.twig' %}
-<section id="page-{{currentPage}}">
+<section id="page-{{ currentPage }}">
     {% if not basket %}
         {% include 'filter_table.twig' with {'values': values, 'metas':metas} %}
         <script type="text/javascript">

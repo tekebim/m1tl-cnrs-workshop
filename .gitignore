@@ -28,3 +28,8 @@ node_modules/
 # Logs
 *.log
 
+# Original app
+app/origin
+
+*bundle.js.LICENSE.txt
+
