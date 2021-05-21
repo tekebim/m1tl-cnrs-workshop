@@ -17,8 +17,7 @@ spl_autoload_register(function ($classname) {
 
 });
 
-$loader = new \Twig\Loader\FilesystemLoader(['../common/templates', './local_templates']);
-// $loader = new \Twig\Loader\FilesystemLoader(['./local_templates','./templates']);
+$loader = new \Twig\Loader\FilesystemLoader(['./local_templates','../common/templates']);
 $twig = new \Twig\Environment($loader, [
     'cache' => false,
     'debug' => true,
