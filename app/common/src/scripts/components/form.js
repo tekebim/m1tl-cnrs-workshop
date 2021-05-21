@@ -72,10 +72,8 @@ const init = () => {
     $('#' + element_id).val('');
   }
 
-  $(function () {
-    $(".dp").datepicker({
-      dateFormat: "dd/mm/yy",
-    });
+  $(".dp").datepicker({
+    dateFormat: "dd/mm/yy",
   });
 }
 

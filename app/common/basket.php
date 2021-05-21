@@ -50,12 +50,12 @@ else {
         $data[$row["record_id"]][] = $row;
     }
 }
-echo $twig->render('index.twig', array(
+echo $twig->render('pages/index.twig', array(
         "metas" => $metas,
         "values" => $values,
         "results" => $data,
         "basket" => true,
         "currentPage" => "basket",
-        "sitename" => _SITE_NAME_
+        "projectName" => _PROJECT_NAME_
     )
 );

@@ -25,4 +25,6 @@ if ($logout != -1) {
     exit();
 }
 
-echo $twig->render('login.twig', array("sitename" => _SITE_NAME_));
+echo $twig->render('login.twig', array(
+    "projectName" => _PROJECT_NAME_
+));

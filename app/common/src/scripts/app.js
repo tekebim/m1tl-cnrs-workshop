@@ -27,6 +27,10 @@ const init = () => {
   if (document.getElementById('page-basket')) {
     isBasket();
   }
+
+  if (document.getElementById('page-admin-configuration')) {
+    isAdminConfig();
+  }
 }
 
 /**
@@ -83,6 +87,24 @@ const isAbout = () => {
  */
 const isLogin = () => {
   console.log('login page');
+}
+
+const isAdminConfig = () => {
+  console.log('isAdminConfig');
+  // Color picker for primary color
+  $('#colorpicker-primary').on('input', function () {
+    $('#project-color-primary').val(this.value);
+  });
+  $('#project-color-primary').on('input', function () {
+    $('#colorpicker-primary').val(this.value);
+  });
+  // Color picker for secondary color
+  $('#colorpicker-secondary').on('input', function () {
+    $('#project-color-secondary').val(this.value);
+  });
+  $('#project-color-secondary').on('input', function () {
+    $('#colorpicker-secondary').val(this.value);
+  });
 }
 
 $(document).ready(function () {
