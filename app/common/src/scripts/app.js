@@ -3,12 +3,12 @@ import 'alpinejs';
 import inView from 'in-view';
 import gsap from 'gsap';
 import customForm from './components/form';
+import adminConfig from './components/adminConfig';
 
 /**
  * Init function
  */
 const init = () => {
-  console.log('function init loaded');
 
   commons();
 
@@ -37,16 +37,6 @@ const init = () => {
  * Global commons functions
  */
 const commons = () => {
-  $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
-  $('#cssmenu #menu-button').on('click', function () {
-    var menu = $(this).next('ul');
-    if (menu.hasClass('open')) {
-      menu.removeClass('open');
-    } else {
-      menu.addClass('open');
-    }
-  });
-
   inView('.to-animate')
     .on('enter', el => {
       gsap.to(el,
@@ -90,24 +80,9 @@ const isLogin = () => {
 }
 
 const isAdminConfig = () => {
-  console.log('isAdminConfig');
-  // Color picker for primary color
-  $('#colorpicker-primary').on('input', function () {
-    $('#project-color-primary').val(this.value);
-  });
-  $('#project-color-primary').on('input', function () {
-    $('#colorpicker-primary').val(this.value);
-  });
-  // Color picker for secondary color
-  $('#colorpicker-secondary').on('input', function () {
-    $('#project-color-secondary').val(this.value);
-  });
-  $('#project-color-secondary').on('input', function () {
-    $('#colorpicker-secondary').val(this.value);
-  });
+  adminConfig.init();
 }
 
 $(document).ready(function () {
   init();
 });
-// document.addEventListener('DOMContentLoaded', init, false);

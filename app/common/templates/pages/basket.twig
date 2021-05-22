@@ -1,0 +1,93 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ projectName }}{% endblock %}
+
+{% block content %}
+    <section id="page-basket">
+        <div class="py-8">
+            <h1 class="text-3xl text-center font-semibold leading-tight">Your selection</h1>
+        </div>
+        {% include 'record_table.twig' with {'data': data, 'metas':metas, 'isBasket': true} %}
+
+        <div class="mx-6 mb-8 bg-white border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+             role="alert">
+            <div class="flex">
+                <div class="py-1">
+                    <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 20 20">
+                        <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-bold">If you want to share this results with someone else, you can share this
+                        dedicated link bellow :</p>
+                    <p class="text-sm">ids[]=1&ids[]=2&ids[]=3</p>
+                    <a href="download_basket.php" target="_blank"
+                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                        Copy share link
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pb-8">
+            <a href="download_basket.php" target="_blank"
+               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download this selection
+            </a>
+        </div>
+    </section>
+
+
+    <script type="text/javascript">
+      $("#edit_form").validate();
+
+      function add_to_basket(rid) {
+        $.ajax
+        ({
+          url: 'add_to_basket.php',
+          data: "rid=" + rid + "&act=add",
+          type: 'post',
+          success: function (result) {
+            $('#b_' + rid + '_add').hide();
+            $('#b_' + rid + '_rem').show();
+          }
+        });
+      }
+
+      function rem_from_basket(rid) {
+        $.ajax
+        ({
+          url: 'add_to_basket.php',
+          data: "rid=" + rid + "&act=rem",
+          type: 'post',
+          success: function (result) {
+            $('#b_' + rid + '_rem').hide();
+            $('#b_' + rid + '_add').show();
+          }
+        });
+      }
+
+      function clear_elt(element_id) {
+        $('#' + element_id).val('');
+      }
+
+      $(function () {
+        $(".dp").datepicker({
+          dateFormat: "dd/mm/yy",
+        });
+      });
+    </script>
+{% endblock %}
+
+
