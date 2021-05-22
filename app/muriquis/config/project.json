@@ -1,8 +1,1 @@
-{
-  "config": {
-    "siteTitle": "Muriquis website"
-  },
-  "pages": {
-    "about": {}
-  }
-}
+{"config":{"projectSlug":"muriquis","projectName":"Muriquis website","projectColorPrimary":"#001fb8","projectColorPrimaryDarken":"#001994","projectColorSecondary":"#01a23f","projectColorSecondaryDarken":"#018233","projectTitle":"&lt;TOto Website"},"pages":{"about":{"page-1":{"id":1,"template":2}}}}

@@ -27,6 +27,10 @@ const init = () => {
   if (document.getElementById('page-basket')) {
     isBasket();
   }
+
+  if (document.getElementById('page-admin-configuration')) {
+    isAdminConfig();
+  }
 }
 
 /**
@@ -69,46 +73,6 @@ const isHome = () => {
  */
 const isBasket = () => {
   console.log('basket page');
-
-
-  $("#edit_form").validate();
-
-  function add_to_basket(rid) {
-    $.ajax
-    ({
-      url: 'add_to_basket.php',
-      data: "rid=" + rid + "&act=add",
-      type: 'post',
-      success: function (result) {
-        $('#b_' + rid + '_add').hide();
-        $('#b_' + rid + '_rem').show();
-      }
-    });
-  }
-
-  function rem_from_basket(rid) {
-    $.ajax
-    ({
-      url: 'add_to_basket.php',
-      data: "rid=" + rid + "&act=rem",
-      type: 'post',
-      success: function (result) {
-        $('#b_' + rid + '_rem').hide();
-        $('#b_' + rid + '_add').show();
-      }
-    });
-  }
-
-  function clear_elt(element_id) {
-    $('#' + element_id).val('');
-  }
-
-  $(function () {
-    $(".dp").datepicker({
-      dateFormat: "dd/mm/yy",
-    });
-  });
-
 }
 
 /**
@@ -123,6 +87,24 @@ const isAbout = () => {
  */
 const isLogin = () => {
   console.log('login page');
+}
+
+const isAdminConfig = () => {
+  console.log('isAdminConfig');
+  // Color picker for primary color
+  $('#colorpicker-primary').on('input', function () {
+    $('#project-color-primary').val(this.value);
+  });
+  $('#project-color-primary').on('input', function () {
+    $('#colorpicker-primary').val(this.value);
+  });
+  // Color picker for secondary color
+  $('#colorpicker-secondary').on('input', function () {
+    $('#project-color-secondary').val(this.value);
+  });
+  $('#project-color-secondary').on('input', function () {
+    $('#colorpicker-secondary').val(this.value);
+  });
 }
 
 $(document).ready(function () {

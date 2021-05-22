@@ -1,24 +1,26 @@
-{% include 'header.twig' %}
+{% extends "base.twig" %}
 
-<section id="page-login" class="w-full h-screen flex">
-    <div class="bg-gray-100 flex flex-col justify-center items-center w-7/12 shadow-lg">
+{% block title %}{{ projectName }} - Login{% endblock %}
 
-    </div>
-    <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg">
-        <h1 class="text-3xl font-bold mb-2">LOGIN</h1>
-        <div class="w-1/2 text-center">
-            <form method="POST">
-                <input type="hidden" name="act" value="login"/>
-                <input type="text" name="login" placeholder="Login" autocomplete="off"
-                       class="shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded">
-                <input type="password" name="pass" placeholder="password" autocomplete="off"
-                       class="shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded">
-                <button class="bg-red-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow">
-                    Log In
-                </button>
-            </form>
+{% block content %}
+    <section id="page-login" class="w-full h-screen flex">
+        <div class="bg-gray-100 flex flex-col justify-center items-center w-7/12 shadow-lg">
+
         </div>
-    </div>
-</section>
-
-{% include 'footer.twig' %}
+        <div class="bg-white flex flex-col justify-center items-center w-5/12 shadow-lg">
+            <h1 class="text-3xl font-bold mb-2">LOGIN</h1>
+            <div class="w-1/2 text-center">
+                <form method="POST">
+                    <input type="hidden" name="act" value="login"/>
+                    <input type="text" name="login" placeholder="Login" autocomplete="off"
+                           class="shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded">
+                    <input type="password" name="pass" placeholder="password" autocomplete="off"
+                           class="shadow-md border w-full h-10 px-3 py-2 text-orange-500 focus:outline-none focus:border-orange-500 mb-3 rounded">
+                    <button class="bg-red-500 hover:bg-orange-600 text-white px-3 py-1 rounded text-lg focus:outline-none shadow">
+                        Log In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

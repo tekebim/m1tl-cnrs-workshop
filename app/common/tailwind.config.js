@@ -13,14 +13,15 @@ module.exports = {
   // purge: ['./dist/*.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    // fontFamily: {
-    //   'sans': ['ui-sans-serif', 'system-ui', ...],
-    //   'serif': ['ui-serif', 'Georgia', ...],
-    //   'mono': ['ui-monospace', 'SFMono-Regular', ...],
-    //   'display': ['Oswald', ...],
-    //   'body': ['Open Sans', ...],
-    // }
-    extend: {},
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
+    fontFamily: {
+      'sans': ['Asap', 'Arial', 'sans-serif']
+    }
   },
   variants: {},
   plugins: [],

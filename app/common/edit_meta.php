@@ -56,7 +56,10 @@ if ($meta_id > 0) {
     }
 }
 
-echo $twig->render('edit_meta.twig', array(
-    "table" => $table_name, "meta" => $meta, "types" => $allowed_types
+echo $twig->render('admin/edit_meta.twig', array(
+    "table" => $table_name,
+    "meta" => $meta,
+    "types" => $allowed_types,
+    "projectName" => _PROJECT_NAME_
 ));
 ?>
