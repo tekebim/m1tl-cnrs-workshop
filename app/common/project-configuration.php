@@ -2,7 +2,8 @@
 
 class ProjectConfig
 {
-    public $template;
+    public $templateSettings;
+    public $templateEditionPages;
     public $fileConfig;
     public $fileConfigPath;
     public $defaultFileConfig;
@@ -16,7 +17,7 @@ class ProjectConfig
         require_once("./environnement.php");
         require_once($_ENV["RELATIVE_PATH"] . "common/init.php");
         // Load the template associated and pass param from global environnement
-        $this->template = $twig->render('admin/project-configuration.twig', array(
+        $this->templateSettings = $twig->render('admin/project-config-settings.twig', array(
             "projectSlug" => _PROJECT_SLUG_,
             "projectName" => _PROJECT_NAME_,
             "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
@@ -25,6 +26,11 @@ class ProjectConfig
             "projectColorBodyBackground" => _PROJECT_COLOR_BODY_BACKGROUND_,
             "projectColorHeaderText" => _PROJECT_COLOR_HEADER_TEXT_,
             "projectColorHeaderBackground" => _PROJECT_COLOR_HEADER_BACKGROUND_,
+        ));
+
+        // Load the template associated and pass param from global environnement
+        $this->templateEditionPages = $twig->render('admin/project-config-pages.twig', array(
+            "projectSlug" => _PROJECT_SLUG_
         ));
         // Initialize
         $this->fileCSSColors = "./assets/css/color_local.css";
@@ -40,25 +46,47 @@ class ProjectConfig
      */
     public function init()
     {
-        // Check if post from update config form
-        if (isset($_POST['updateProjectConfig'])) {
-            $this->updateConfig();
-        } // Check if need to reset config
-        elseif (isset($_POST['resetDefaultConfig'])) {
-            $this->resetConfig();
+        if (isset($_GET['edition'])) {
+            if ($_GET['edition'] === 'settings') {
+                // Check if post from update config form
+                if (isset($_POST['updateProjectConfig'])) {
+                    $this->updateConfig();
+                } // Check if need to reset config
+                elseif (isset($_POST['resetDefaultConfig'])) {
+                    $this->resetConfig();
+                } else {
+                    // By default render form
+                    $this->renderSettingsForm();
+                }
+            } elseif ($_GET['edition'] === 'pages') {
+                $this->renderPagesForm();
+            } else {
+                header('Location: ' . $_SERVER['PHP_SELF'] . '?edition=settings');
+                die();
+            }
         } else {
-            // By default render form
-            $this->renderForm();
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?edition=settings');
+            die();
         }
     }
 
     /**
-     * Function to render the default form
+     * Function to render the settings form (default form)
      */
-    public function renderForm()
+    public function renderSettingsForm()
     {
         echo '<main id="page-admin-configuration">';
-        echo $this->template;
+        echo $this->templateSettings;
+        echo '</main>';
+    }
+
+    /**
+     * Function to render the pages edition form
+     */
+    public function renderPagesForm()
+    {
+        echo '<main id="page-admin-configuration" class="configuration-pages">';
+        echo $this->templateEditionPages;
         echo '</main>';
     }
 

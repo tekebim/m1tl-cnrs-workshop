@@ -66,8 +66,9 @@
                                 <span>Add element</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="project-configuration.php" class="navbar-li text-white hover:bg-gray-800">
+                        <li class="relative parent hover:bg-gray-800">
+                            <a href="#"
+                               class="flex justify-between md:inline-flex p-4 items-center space-x-2 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,7 +77,20 @@
                                           d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                                 <span>Configuration</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                     viewBox="0 0 24 24">
+                                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                                </svg>
                             </a>
+                            <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-gray-800 md:shadow-lg md:rounded-b ">
+                                <li>
+                                    <a href="project-configuration.php?edition=settings"
+                                       class="navbar-sub-li text-white">Project settings</a>
+                                </li>
+                                <li>
+                                    <a href="project-configuration.php?edition=pages" class="navbar-sub-li text-white">Pages</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="login.php?logout=1" class="navbar-li text-white hover:bg-gray-800">
