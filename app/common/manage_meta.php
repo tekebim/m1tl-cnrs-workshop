@@ -5,36 +5,45 @@ $want_menu = true;
 require_once("environnement.php");
 require_once($_ENV["RELATIVE_PATH"] . "common/init.php");
 
-$table_name = (isset($_GET["table"]) ? $_GET["table"] : '');
-if ($table_name == '') {
-    $table_name = (isset($_POST["table"]) ? $_POST["table"] : 'record');
-}
+// Table autoriser sur lesquels boucler
+$allowTable = ["record", "production","speaker"];
 
+// Start loop
+for($i = 0; $i <= count($allowTable)-1; $i++){
+    $table_name = $allowTable[$i];
+    $required_fields = [];
+    $meta_fields = [];
+    
+    $SQL = "SELECT `COLUMN_NAME`, `DATA_TYPE` , `COLUMN_TYPE`, `EXTRA`
+        FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+        WHERE `TABLE_SCHEMA`='cri_singe' 
+            AND `TABLE_NAME`='" . $table_name . "';";
+    $res = $dbh->executeQuery($SQL);
 
-$required_fields = [];
-$meta_fields = [];
+    while ($row = $res->fetch_assoc()) {
+        $required_fields[] = $row["COLUMN_NAME"];
+    }
 
-$SQL = "SELECT `COLUMN_NAME`, `DATA_TYPE` , `COLUMN_TYPE`, `EXTRA`
-	FROM `INFORMATION_SCHEMA`.`COLUMNS` 
-	WHERE `TABLE_SCHEMA`='cri_singe' 
-		AND `TABLE_NAME`='" . $table_name . "';";
-$res = $dbh->executeQuery($SQL);
+    $SQL = "select * from `meta` where table_name = '" . $table_name . "'";
+    $res = $dbh->executeQuery($SQL);
+    while ($row = $res->fetch_assoc()) {
+        $meta_fields[] = $row;
+    }
+    
+    $datas[] = [
+        'table_name' => $table_name,
+        'required_fields' => $required_fields,
+        'meta_fields' => $meta_fields];
 
-while ($row = $res->fetch_assoc()) {
-    $required_fields[] = $row["COLUMN_NAME"];
-
-}
-
-$SQL = "select * from `meta` where table_name = '" . $table_name . "'";
-$res = $dbh->executeQuery($SQL);
-while ($row = $res->fetch_assoc()) {
-    $meta_fields[] = $row;
 }
 
 echo $twig->render('manage_meta.twig', array(
-    "table" => $table_name,
-    "required" => $required_fields,
-    "meta" => $meta_fields,
+    "datas" => $datas,
     "projectName" => _PROJECT_NAME_
 ));
+
+
+
+
+
 ?>
