@@ -27,25 +27,25 @@
     </td>
     {% for met in metas["record"] %}
         <td class="col-record">
-            <span>{{ data[0][met["field_name"]] }}</span>
+            <span class="block">{{ data[0][met["field_name"]] }}</span>
         </td>
     {% endfor %}
     <td class="col-record">
         {% for line in data %}
-            <span>{{ line["sequence_order"] }}</span>
+            <span class="block">{{ line["sequence_order"] }}</span>
         {% endfor %}
     </td>
     {% for met in metas["production"] %}
         <td class="col-record">
             {% for line in data %}
-                <span>{{ line[met["field_name"]] }}</span>
+                <span class="block">{{ line[met["field_name"]] }}</span>
             {% endfor %}
         </td>
     {% endfor %}
     {% for met in metas["speaker"] %}
         <td class="col-record">
             {% for line in data %}
-                <span>{{ line[met["field_name"]] }}</span>
+                <span class="block">{{ line[met["field_name"]] }}</span>
             {% endfor %}
         </td>
     {% endfor %}
