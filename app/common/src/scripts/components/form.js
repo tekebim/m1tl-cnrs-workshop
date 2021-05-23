@@ -36,6 +36,7 @@ const init = () => {
 
   let addToBasketBtnAll = document.querySelectorAll('.action--add');
   let removeToBasketBtnAll = document.querySelectorAll('.action--remove');
+
   /**
    * Checkbox
    * @type {NodeListOf<Element>}
@@ -154,5 +155,30 @@ const init = () => {
 
   initDatepicker();
 }
+/*
+Function to generate dynamic links from selected items
+@ids : base on items ids
+ */
+const updateDynamicSelectionLinks = (ids) => {
+  // Target elements on page
+  let eltOnPage = document.getElementById('share-link');
+  let dynamicSectionElt = document.getElementById('dynmamic-ids');
 
-export default {init};
+  // Adjust id's prefix for query structure
+  let idsPrefixed = ids.map(function (el) {
+    return 'ids[]=' + el;
+  })
+
+  let idsQuery = idsPrefixed.join('&');
+
+  // If element is defined on page
+  if (dynamicSectionElt !== null) {
+    // Replce the content
+    dynamicSectionElt.innerText = idsQuery;
+  }
+  if (eltOnPage !== null) {
+    eltOnPage.href = eltOnPage.innerText;
+  }
+}
+
+export default {init, updateDynamicSelectionLinks};

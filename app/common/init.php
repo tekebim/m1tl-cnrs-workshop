@@ -26,13 +26,6 @@ $twig = new \Twig\Environment($loader, [
 
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-// require_once '/path/to/vendor/autoload.php';
-// require_once("Twig/Autoloader.php");
-// Twig_Autoloader::register();
-// $loader = new Twig_Loader_Filesystem(['./local_templates','./common/templates']); // Dossier contenant les templates
-// $twig = new Twig_Environment($loader, array(
-// 'cache' => false
-// ));
 if (isset($ajax)) {
     $twig->addGlobal('ajax', $ajax);
 } else {
@@ -110,5 +103,32 @@ while ($row = $res->fetch_assoc()) {
     $row["in_basket"] = in_array($row["record_id"], $basket);
     $data[$row["record_id"]][] = $row;
 }
+
 $twig->addGlobal('sessionBasket', $basket);
 $twig->addGlobal('projectName', _PROJECT_NAME_);
+$twig->addGlobal('projectURL', getCurrentURL('root'));
+$twig->addGlobal('currentWebsiteURL', getCurrentURL('website'));
+$twig->addGlobal('currentPageURL', getCurrentURL('page'));
+
+function getCurrentURL($type)
+{
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+        $url = "https://";
+    else
+        $url = "http://";
+
+    if ($type === 'page') {
+        $url .= $_SERVER['HTTP_HOST'];
+        $url .= $_SERVER['REQUEST_URI'];
+    } else if ($type === 'root') {
+        $url .= $_SERVER['SERVER_NAME'];
+    } else if ($type === 'website') {
+        $url .= $_SERVER['HTTP_HOST'];
+        $url .= $_SERVER['REQUEST_URI'];
+        $basename = basename($url);
+        $urlDirPath = str_replace($basename, '', $url);
+        $url = $urlDirPath;
+    }
+
+    return $url;
+}

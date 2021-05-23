@@ -4,7 +4,7 @@
         <div class="flex actions-checkbox justify-center">
             {% if isBasket is defined and isBasket %}
                 <svg id="b_{{ data[0]["record_id"] }}_rem" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                     onclick="javascript:rem_from_basket({{ data[0]["record_id"] }})" viewBox="0 0 20 20"
+                     viewBox="0 0 20 20"
                      fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
                           clip-rule="evenodd"/>
@@ -50,10 +50,14 @@
         </td>
     {% endfor %}
     <td class="col-record">
-        audio
-        <!--<audio controls preload="none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-color-primary text-size-2xl" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        <div class="hidden">
+        <audio controls preload="none">
             <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
             Your browser does not support the audio element.
-        </audio>-->
+        </audio>
+        </div>
     </td>
 </tr>

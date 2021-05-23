@@ -62,7 +62,44 @@ const isHome = () => {
  * Functions for basket page
  */
 const isBasket = () => {
-  console.log('basket page');
+
+  let rows = document.querySelectorAll('.table-results tbody > tr');
+  let selectionIds = [];
+  rows.forEach(row => {
+    selectionIds.push(row.dataset.id);
+  })
+
+  customForm.updateDynamicSelectionLinks(selectionIds);
+
+  // Event click on button copy link to clipboard
+  let btnCopyToClipboard = document.getElementById('btn-copy-clipboard');
+  let shareLink = document.getElementById('share-link');
+  btnCopyToClipboard.addEventListener('click', (e) => {
+    e.preventDefault();
+    // If element share link exist
+    if (shareLink !== null) {
+      // Copy href attribute to user clipboard
+      copyToClipboard(shareLink.href);
+    }
+  });
+
+  /*
+  Function to create fake input, to copy value on clipboard
+  @value : String
+   */
+  function copyToClipboard(value) {
+    // Create a temporary input to get value
+    let tempInput = document.createElement("input");
+    // Assign value to temp input
+    tempInput.value = value;
+    document.body.appendChild(tempInput);
+    // Select the value
+    tempInput.select();
+    // Copy the value to clipboard
+    document.execCommand("copy");
+    // Then remove temp input from DOM
+    document.body.removeChild(tempInput);
+  }
 }
 
 /**
