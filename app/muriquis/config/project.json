@@ -18,8 +18,15 @@
   "pages": [
     {
       "id": 1,
-      "title": "About",
-      "slug": "about",
+      "title": "Home",
+      "url": "index.php",
+      "isActive": true,
+      "enableSubpages": false
+    },
+    {
+      "id": 2,
+      "title": "About us",
+      "url": "about.php",
       "isActive": true,
       "enableSubpages": true,
       "subpages": [
@@ -40,13 +47,6 @@
           "content": "lorem ipsum"
         }
       ]
-    },
-    {
-      "id": 2,
-      "title": "Home",
-      "slug": "home",
-      "isActive": true,
-      "enableSubpages": false
     }
   ],
   "blocks": {

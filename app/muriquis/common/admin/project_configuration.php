@@ -103,8 +103,8 @@ class ProjectConfig
                 // If trying to rename the slug
                 if ($configJson['pages']) {
                     $pages = $configJson['pages'];
-                    foreach ($pages as $page => $pageCconfig) {
-                        $data[] = $pageCconfig;
+                    foreach ($pages as $page => $pageConfig) {
+                        $data[] = $pageConfig;
                     }
                 }
             }
