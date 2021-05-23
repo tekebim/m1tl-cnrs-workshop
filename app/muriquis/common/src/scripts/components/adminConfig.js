@@ -1,5 +1,29 @@
+import Quill from 'quill';
+
+/**
+ * Initialize function
+ */
 const init = () => {
-  console.log('adminInit');
+  colorPicker();
+  editorsWYSIWYG();
+}
+
+/*
+* Function for editor WYSIWYG
+ */
+const editorsWYSIWYG = () => {
+  let editors = document.querySelectorAll('.page-content-editor');
+  editors.forEach((editor) => {
+    let quill = new Quill(editor, {
+      theme: 'snow'
+    });
+  });
+}
+
+/**
+ * Function for color picker
+ */
+const colorPicker = () => {
   // Color picker for primary color
   $('#colorpicker-primary').on('input', function () {
     $('#project-color-primary').val(this.value);
@@ -44,17 +68,4 @@ const init = () => {
   });
 }
 
-const loadPageContent = (data) => {
-  $.ajax
-  ({
-    url: 'common/admin/load_page_content.php',
-    data: data,
-    type: 'post',
-    success: function (result) {
-      // $('#b_' + rid + '_add').show();
-      console.log('success');
-    }
-  });
-}
-
-export default {init, loadPageContent};
+export default {init};

@@ -1,3 +1,3 @@
 <?php
-require_once("environnement.php");
-require_once("./common/about.php");
+require_once(__DIR__ . "/environnement.php");
+require_once(ROOT_DIR . "/common/about.php");

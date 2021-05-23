@@ -118,13 +118,6 @@ const isLogin = () => {
 
 const isAdminConfig = () => {
   adminConfig.init();
-  // Bind click for all edit page button
-  let btnEditAll = document.querySelectorAll('.btn-edit-content-page');
-  btnEditAll.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      adminConfig.loadPageContent(btn.dataset.id);
-    })
-  })
 }
 
 $(document).ready(function () {

@@ -2,7 +2,7 @@
 $ajax = false;
 $need_auth = true;
 $want_menu = true;
-require_once("../common/init.php");
+require_once(ROOT_DIR . "/common/init.php");
 
 $table_name = (isset($_GET["table"]) ? $_GET["table"] : '');
 $act = (isset($_POST["act"]) ? $_POST["act"] : Null);

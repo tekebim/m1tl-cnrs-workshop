@@ -1,6 +1,9 @@
 <?php
 define('ROOT_DIR', realpath(__DIR__));
 
+/*
+ * Load configuration json file
+ */
 function loadConfig()
 {
     $config = file_get_contents(__DIR__ . "/config/project.json");
@@ -28,6 +31,9 @@ function loadConfig()
     }
 }
 
+/*
+ * Create default config value
+ */
 function initDefaultCfg()
 {
     define("_PROJECT_SLUG_", "untitled");

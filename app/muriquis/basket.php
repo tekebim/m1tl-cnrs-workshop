@@ -1,3 +1,3 @@
 <?php
-require_once("environnement.php");
-require_once("./common/basket.php");
+require_once(__DIR__ . "/environnement.php");
+require_once(ROOT_DIR . "/common/basket.php");
