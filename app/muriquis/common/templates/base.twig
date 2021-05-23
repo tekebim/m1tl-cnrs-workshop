@@ -1,0 +1,164 @@
+<html>
+<head>
+    {% block head %}
+        <title>{% block title %}Project{% endblock %}</title>
+    {% endblock %}
+    {% block metas %}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/assets/css/color_local.css">
+        <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/common/dist/assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/assets/css/custom.css"/>
+        <link rel="icon" type="image/png" href="/{{ projectSlug }}/assets/img/favicon.png"/>
+    {% endblock %}
+</head>
+<body>
+
+{% block header %}
+    {% if want_menu == true %}
+        <header class="sticky top-0 z-40">
+            {% if user_id != -1 %}
+                <nav class="flex px-4 border-b items-center relative bg-gray-700 z-50">
+                    <div class="logo text-white">
+                        <span>Administration</span>
+                    </div>
+
+                    <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
+                        <li class="relative parent hover:bg-gray-800">
+                            <a href="#"
+                               class="flex justify-between md:inline-flex p-4 items-center space-x-2 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                </svg>
+                                <span>Database Management</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                     viewBox="0 0 24 24">
+                                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                                </svg>
+                            </a>
+                            <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-gray-800 md:shadow-lg md:rounded-b ">
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=record"
+                                       class="navbar-sub-li text-white">Records</a>
+                                </li>
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=production" class="navbar-sub-li text-white">Productions</a>
+                                </li>
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=speaker"
+                                       class="navbar-sub-li text-white">Speakers</a>
+                                </li>
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/remake_db.php" class="navbar-sub-li text-white">Recalculate
+                                        database</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/{{ projectSlug }}/admin/edit_meta.php" class="navbar-li text-white hover:bg-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>Add element</span>
+                            </a>
+                        </li>
+                        <li class="relative parent hover:bg-gray-800">
+                            <a href="#"
+                               class="flex justify-between md:inline-flex p-4 items-center space-x-2 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <span>Configuration</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                     viewBox="0 0 24 24">
+                                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                                </svg>
+                            </a>
+                            <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-gray-800 md:shadow-lg md:rounded-b ">
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/project-configuration.php?edition=settings"
+                                       class="navbar-sub-li text-white">Project settings</a>
+                                </li>
+                                <li>
+                                    <a href="/{{ projectSlug }}/admin/project-configuration.php?edition=pages"
+                                       class="navbar-sub-li text-white">Pages</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/{{ projectSlug }}/login.php?logout=1" class="navbar-li text-white hover:bg-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+            {{ app }}
+            <nav class="navbar">
+                <div class="logo"><a href="index.php">{{ projectName }}</a></div>
+                <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0 items-center">
+                    <li>
+                        <a href="/{{ projectSlug }}/index.php" class="navbar-li hover-li"><span>Home</span></a>
+                    </li>
+                    <li>
+                        <a href="/{{ projectSlug }}/about.php" class="navbar-li hover-li"><span>About us</span></a>
+                    </li>
+                    {% if user_id != 1 %}
+                        <li>
+                            <a href="/{{ projectSlug }}/login.php" class="navbar-li hover-li"><span>Admin</span></a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="/{{ projectSlug }}/basket.php"
+                           class="flex bg-gradient-to-r from-primary to-primary-dark rounded-full px-8 py-3 my-4 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"/>
+                            </svg>
+                            <span class="pl-2">Selection (<span
+                                        id="basket-count">{{ sessionBasket|length }}</span>)</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="ml-auto md:hidden text-gray-500 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
+                    </svg>
+                </div>
+            </nav>
+        </header>
+    {% endif %}
+{% endblock %}
+
+<main id="content">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="border-t-2 border-gray py-8">
+    {% block footer %}
+        <div class="text-center">
+            ©Francisco Dyonisio C Mendes, Didier Demolin (Data) - C. Ponchard, R. Trouville (Website) - 2021
+        </div>
+    {% endblock %}
+</footer>
+
+{% block scripts %}
+    <script src="/{{ projectSlug }}/common/dist/assets/js/bundle.js"></script>
+    <script type="module" src="/{{ projectSlug }}/assets/js/custom.js"></script>
+{% endblock %}
+</body>
+</html>

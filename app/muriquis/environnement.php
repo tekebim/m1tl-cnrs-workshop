@@ -1,6 +1,5 @@
 <?php
-$_ENV["RELATIVE_PATH"] = "../";
-$_ENV["RELATIVE_PATH_COMMON"] = "../common/";
+define('ROOT_DIR', realpath(__DIR__));
 
 function loadConfig()
 {
