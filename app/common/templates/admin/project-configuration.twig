@@ -3,7 +3,7 @@
 {% block title %}{{ projectName }} - Project configuration{% endblock %}
 
 {% block content %}
-    <section id="page-admin-configuration" class="flex h-screen bg-gray-200 items-center justify-center">
+    <section id="page-admin-configuration" class="flex py-20 bg-gray-200 items-center justify-center">
         <div class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
             <div class="flex justify-center py-4">
                 <div class="flex bg-gray-400 rounded-full md:p-4 p-2">
@@ -57,6 +57,42 @@
                                pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorSecondary }}"
                                id="project-color-secondary" name="project-color-secondary"/>
                     </div>
+                    <div class="grid grid-cols-1">
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body Text Color</label>
+                        <input type="color" id="colorpicker-body-text" name="colorpicker-body-text"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyText }}">
+                        <input type="text"
+                               class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyText }}"
+                               id="project-color-body-text" name="project-color-body-text"/>
+                    </div>
+                    <div class="grid grid-cols-1">
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body Background Color</label>
+                        <input type="color" id="colorpicker-body-background" name="colorpicker-body-background"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyBackground }}">
+                        <input type="text"
+                               class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyBackground }}"
+                               id="project-color-body-background" name="project-color-body-background"/>
+                    </div>
+                    <div class="grid grid-cols-1">
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header Text Color</label>
+                        <input type="color" id="colorpicker-header-text" name="colorpicker-header-text"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderText }}">
+                        <input type="text"
+                               class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderText }}"
+                               id="project-color-header-text" name="project-color-header-text"/>
+                    </div>
+                    <div class="grid grid-cols-1">
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header Background Color</label>
+                        <input type="color" id="colorpicker-header-background" name="colorpicker-header-background"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderBackground }}">
+                        <input type="text"
+                               class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                               pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderBackground }}"
+                               id="project-color-header-background" name="project-color-header-background"/>
+                    </div>
                 </div>
 
                 <!--<div class="grid grid-cols-1 mt-5 mx-7">
@@ -87,9 +123,15 @@
                     </div>
                 </div>
 
+                <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                    <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+                <label for="toggle" class="text-xs text-gray-700">Display hero banner</label>
+
                 <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-                    <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
-                        Cancel
+                    <button onclick="return confirm('Are you sure you want to reset the original config ?');" type="submit" name="resetDefaultConfig" class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
+                        Reset default
                     </button>
                     <button type="submit" name="updateProjectConfig"
                             class='w-auto bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
@@ -98,6 +140,6 @@
                 </div>
             </form>
         </div>
-    </section>>
+    </section>
 
 {% endblock %}

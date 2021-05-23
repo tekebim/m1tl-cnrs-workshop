@@ -5,34 +5,34 @@ $want_menu = false;
 require_once("environnement.php");
 require_once($_ENV["RELATIVE_PATH"] . "common/init.php");
 
-if(!isset($_SESSION["basket"])){
-	$_SESSION["basket"] = [];
+if (!isset($_SESSION["basket"])) {
+    $_SESSION["basket"] = [];
 }
 $basket = $_SESSION["basket"];
-if(count($basket) > 0){
-	$wheres = ["r.id IN (".join(",",$basket).")"];
-}else{
-	$wheres = ["0=1"];
+if (count($basket) > 0) {
+    $wheres = ["r.id IN (" . join(",", $basket) . ")"];
+} else {
+    $wheres = ["0=1"];
 }
 $SQL = "SELECT DISTINCT r.filename from record_flat as r";
-$SQL .= " WHERE ".join(" AND ",$wheres)." ";
+$SQL .= " WHERE " . join(" AND ", $wheres) . " ";
 $SQL .= "UNION SELECT DISTINCT r.filename from extra_files as r";
-$tmp = " WHERE ".join(" AND ",$wheres);
+$tmp = " WHERE " . join(" AND ", $wheres);
 $SQL .= str_replace(" r.id ", " r.record_id ", $tmp);
 
 
 $res = $dbh->executeQuery($SQL);
 $files = [];
-while($row = $res->fetch_assoc()){
-	$files[] = "./files/".$row["filename"];
+while ($row = $res->fetch_assoc()) {
+    $files[] = "./files/" . $row["filename"];
 }
 
-$zipname = './tmp/'.md5(time()).'.zip';
+$zipname = './tmp/' . md5(time()) . '.zip';
 $zip = new ZipArchive;
 $zip->open($zipname, ZipArchive::CREATE);
 foreach ($files as $file) {
-	$tmp = explode("/",$file);
-	$zip->addFile($file, $tmp[count($tmp)-1]);
+    $tmp = explode("/", $file);
+    $zip->addFile($file, $tmp[count($tmp) - 1]);
 }
 $zip->close();
 
@@ -42,4 +42,3 @@ header('Content-Length: ' . filesize($zipname));
 readfile($zipname);
 
 unlink($zipname);
-?>

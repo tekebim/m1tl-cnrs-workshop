@@ -123,7 +123,6 @@ echo $twig->render('pages/index.twig', array(
         "metas" => $metas,
         "values" => $values,
         "results" => $data,
-        "basket" => false,
         "projectName" => _PROJECT_NAME_
     )
 );

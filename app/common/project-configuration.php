@@ -5,6 +5,8 @@ class ProjectConfig
     public $template;
     public $fileConfig;
     public $fileConfigPath;
+    public $defaultFileConfig;
+    public $defaultFileConfigPath;
     public $fileCSSColors;
 
     public function __construct()
@@ -18,10 +20,17 @@ class ProjectConfig
             "projectSlug" => _PROJECT_SLUG_,
             "projectName" => _PROJECT_NAME_,
             "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
-            "projectColorSecondary" => _PROJECT_COLOR_SECONDARY_));
+            "projectColorSecondary" => _PROJECT_COLOR_SECONDARY_,
+            "projectColorBodyText" => _PROJECT_COLOR_BODY_TEXT_,
+            "projectColorBodyBackground" => _PROJECT_COLOR_BODY_BACKGROUND_,
+            "projectColorHeaderText" => _PROJECT_COLOR_HEADER_TEXT_,
+            "projectColorHeaderBackground" => _PROJECT_COLOR_HEADER_BACKGROUND_,
+        ));
         // Initialize
         $this->fileCSSColors = "./assets/css/color_local.css";
+        $this->defaultFileConfig = "./config/default.json";
         $this->fileConfig = "./config/project.json";
+        $this->defaultFileConfigPath = file_get_contents($this->defaultFileConfig);
         $this->fileConfigPath = file_get_contents($this->fileConfig);
         $this->init();
     }
@@ -34,6 +43,9 @@ class ProjectConfig
         // Check if post from update config form
         if (isset($_POST['updateProjectConfig'])) {
             $this->updateConfig();
+        } // Check if need to reset config
+        elseif (isset($_POST['resetDefaultConfig'])) {
+            $this->resetConfig();
         } else {
             // By default render form
             $this->renderForm();
@@ -56,7 +68,7 @@ class ProjectConfig
     public function updateConfig()
     {
         // If post value missing
-        if (!isset($_POST['project-slug']) || !isset($_POST['project-name']) || !isset($_POST['project-color-primary']) || !isset($_POST['project-color-secondary'])) {
+        if (!isset($_POST['project-slug']) || !isset($_POST['project-name']) || !isset($_POST['project-color-primary']) || !isset($_POST['project-color-secondary']) || !isset($_POST['project-color-header-text']) || !isset($_POST['project-color-header-background']) || !isset($_POST['project-color-body-text']) || !isset($_POST['project-color-body-background'])) {
             echo 'Required missing values';
             return;
         }
@@ -83,17 +95,41 @@ class ProjectConfig
                 $newColorPrimary = htmlspecialchars($_POST['project-color-primary']);
                 $newColorSecondary = htmlspecialchars($_POST['project-color-secondary']);
                 $newColorPrimaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-primary']), -0.2);
+                $newColorPrimaryLighten = $this->adjustBrightness(htmlspecialchars($_POST['project-color-primary']), +0.5);
                 $newColorSecondaryDarken = $this->adjustBrightness(htmlspecialchars($_POST['project-color-secondary']), -0.2);
+                $newColorSecondaryLighten = $this->adjustBrightness(htmlspecialchars($_POST['project-color-secondary']), +0.5);
+                $newColorBodyText = htmlspecialchars($_POST['project-color-body-text']);
+                $newColorHeaderText = htmlspecialchars($_POST['project-color-header-text']);
+                $newColorBodyBackground = htmlspecialchars($_POST['project-color-body-background']);
+                $newColorHeaderBackground = htmlspecialchars($_POST['project-color-header-background']);
+
+                // Colors primary and secondary must be different
+                if ($newColorPrimary === $newColorSecondary) {
+                    echo 'You must choose two differents colors.';
+                    return;
+                }
 
                 $colors = [
-                    'currentColorPrimary' => $configJson['config']['projectColorPrimary'],
-                    'currentColorPrimaryDarken' => $configJson['config']['projectColorPrimaryDarken'],
-                    'currentColorSecondary' => $configJson['config']['projectColorSecondary'],
-                    'currentColorSecondaryDarken' => $configJson['config']['projectColorSecondaryDarken'],
+                    'currentColorPrimary' => $configJson['config']['colors']['projectColorPrimary'],
+                    'currentColorPrimaryDarken' => $configJson['config']['colors']['projectColorPrimaryDarken'],
+                    'currentColorPrimaryLighten' => $configJson['config']['colors']['projectColorPrimaryLighten'],
+                    'currentColorSecondary' => $configJson['config']['colors']['projectColorSecondary'],
+                    'currentColorSecondaryDarken' => $configJson['config']['colors']['projectColorSecondaryDarken'],
+                    'currentColorSecondaryLighten' => $configJson['config']['colors']['projectColorSecondaryLighten'],
+                    'currentColorBodyText' => $configJson['config']['colors']['projectColorBodyText'],
+                    'currentColorHeaderText' => $configJson['config']['colors']['projectColorHeaderText'],
+                    'currentColorBodyBackground' => $configJson['config']['colors']['projectColorBodyBackground'],
+                    'currentColorHeaderBackground' => $configJson['config']['colors']['projectColorHeaderBackground'],
                     'newColorPrimary' => $newColorPrimary,
                     'newColorPrimaryDarken' => $newColorPrimaryDarken,
+                    'newColorPrimaryLighten' => $newColorPrimaryLighten,
                     'newColorSecondary' => $newColorSecondary,
                     'newColorSecondaryDarken' => $newColorSecondaryDarken,
+                    'newColorSecondaryLighten' => $newColorSecondaryLighten,
+                    'newColorBodyText' => $newColorBodyText,
+                    'newColorHeaderText' => $newColorHeaderText,
+                    'newColorBodyBackground' => $newColorBodyBackground,
+                    'newColorHeaderBackground' => $newColorHeaderBackground,
                 ];
 
                 // Update local variable in CSS
@@ -101,10 +137,16 @@ class ProjectConfig
 
                 $configJson['config']['projectSlug'] = htmlspecialchars($_POST['project-slug']);
                 $configJson['config']['projectName'] = htmlspecialchars($_POST['project-name']);
-                $configJson['config']['projectColorPrimary'] = $newColorPrimary;
-                $configJson['config']['projectColorPrimaryDarken'] = $newColorPrimaryDarken;
-                $configJson['config']['projectColorSecondary'] = $newColorSecondary;
-                $configJson['config']['projectColorSecondaryDarken'] = $newColorSecondaryDarken;
+                $configJson['config']['colors']['projectColorPrimary'] = $newColorPrimary;
+                $configJson['config']['colors']['projectColorPrimaryDarken'] = $newColorPrimaryDarken;
+                $configJson['config']['colors']['projectColorPrimaryLighten'] = $newColorPrimaryLighten;
+                $configJson['config']['colors']['projectColorSecondary'] = $newColorSecondary;
+                $configJson['config']['colors']['projectColorSecondaryDarken'] = $newColorSecondaryDarken;
+                $configJson['config']['colors']['projectColorSecondaryLighten'] = $newColorSecondaryLighten;
+                $configJson['config']['colors']['projectColorBodyText'] = $newColorBodyText;
+                $configJson['config']['colors']['projectColorHeaderText'] = $newColorHeaderText;
+                $configJson['config']['colors']['projectColorBodyBackground'] = $newColorBodyBackground;
+                $configJson['config']['colors']['projectColorHeaderBackground'] = $newColorHeaderBackground;
 
                 // Save modifications to the json file
                 file_put_contents($this->fileConfig, json_encode($configJson));
@@ -124,16 +166,37 @@ class ProjectConfig
     }
 
     /**
+     * Function to reset default config
+     */
+    public function resetConfig()
+    {
+        // If default config file exist
+        if (($this->defaultFileConfig !== false) && ($this->fileConfig !== false)) {
+            var_dump('can reset');
+            die();
+        }
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        die();
+
+    }
+
+    /**
      * Function to update CSS global var
      */
     public function updateCSSFile(array $colors)
     {
         // Open the CSS file
         $cssString = file_get_contents($this->fileCSSColors);
-        $cssString = str_replace($colors['currentColorPrimary'], $colors['newColorPrimary'], $cssString);
-        $cssString = str_replace($colors['currentColorPrimaryDarken'], $colors['newColorPrimaryDarken'], $cssString);
-        $cssString = str_replace($colors['currentColorSecondary'], $colors['newColorSecondary'], $cssString);
-        $cssString = str_replace($colors['currentColorSecondaryDarken'], $colors['newColorSecondaryDarken'], $cssString);
+        $cssString = str_replace('--color-primary: ' . $colors['currentColorPrimary'], '--color-primary: ' . $colors['newColorPrimary'], $cssString);
+        $cssString = str_replace('--color-primary-darken: ' . $colors['currentColorPrimaryDarken'], '--color-primary-darken: ' . $colors['newColorPrimaryDarken'], $cssString);
+        $cssString = str_replace('--color-primary-lighten: ' . $colors['currentColorPrimaryLighten'], '--color-primary-lighten: ' . $colors['newColorPrimaryLighten'], $cssString);
+        $cssString = str_replace('--color-secondary: ' . $colors['currentColorSecondary'], '--color-secondary: ' . $colors['newColorSecondary'], $cssString);
+        $cssString = str_replace('--color-secondary-darken: ' . $colors['currentColorSecondaryDarken'], '--color-secondary-darken: ' . $colors['newColorSecondaryDarken'], $cssString);
+        $cssString = str_replace('--color-secondary-lighten: ' . $colors['currentColorSecondaryLighten'], '--color-secondary-lighten: ' . $colors['newColorSecondaryLighten'], $cssString);
+        $cssString = str_replace('--body-text-color: ' . $colors['currentColorBodyText'], '--body-text-color: ' . $colors['newColorBodyText'], $cssString);
+        $cssString = str_replace('--body-background-color: ' . $colors['currentColorBodyBackground'], '--body-background-color: ' . $colors['newColorBodyBackground'], $cssString);
+        $cssString = str_replace('--header-background-color: ' . $colors['currentColorHeaderBackground'], '--header-background-color: ' . $colors['newColorHeaderBackground'], $cssString);
+        $cssString = str_replace('--header-text-color: ' . $colors['currentColorHeaderText'], '--header-text-color: ' . $colors['newColorHeaderText'], $cssString);
         // Save changes on file
         file_put_contents($this->fileCSSColors, $cssString);
     }
