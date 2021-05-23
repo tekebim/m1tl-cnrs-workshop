@@ -1,3 +1,3 @@
 <?php
 require_once("environnement.php");
-require_once($_ENV["RELATIVE_PATH_COMMON"] . "download_basket.php");
+require_once(ROOT_DIR . "/common/download_basket.php");
