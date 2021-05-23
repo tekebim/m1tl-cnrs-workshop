@@ -145,11 +145,11 @@ body {
 }
 
 .table-results tr.record--selected {
-    background: var(--body-secondary);
+    background: var(--color-secondary);
 }
 
 .table-results .col-head {
-    @apply p-2 text-xs font-semibold uppercase;
+    @apply p-2 py-2 text-xs bg-primary font-semibold uppercase text-white;
 }
 
 .table-results .col-record {
@@ -439,7 +439,7 @@ Build date: 2019-12-19 16:51:02
 .irs--flat .irs-bar {
     top: 25px;
     height: 12px;
-    background-color: var(--body-secondary);
+    background-color: var(--color-secondary);
 }
 
 .irs--flat .irs-bar--single {
@@ -467,7 +467,7 @@ Build date: 2019-12-19 16:51:02
     width: 2px;
     height: 100%;
     margin-left: -1px;
-    background-color: var(--body-secondary-darken);
+    background-color: var(--color-secondary-darken);
 }
 
 .irs--flat .irs-handle.state_hover > i:first-child,
@@ -495,7 +495,7 @@ Build date: 2019-12-19 16:51:02
     line-height: 1.333;
     text-shadow: none;
     padding: 1px 5px;
-    background-color: var(--body-secondary);
+    background-color: var(--color-secondary);
     border-radius: 4px;
 }
 
@@ -512,7 +512,7 @@ Build date: 2019-12-19 16:51:02
     margin-left: -3px;
     overflow: hidden;
     border: 3px solid transparent;
-    background-color: var(--body-secondary);
+    background-color: var(--color-secondary);
 }
 
 .irs--flat .irs-grid-pol {

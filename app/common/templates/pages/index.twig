@@ -24,12 +24,7 @@
             </div>
         </div>
 
-        {% if not basket %}
-            {% include 'filter_table.twig' with {'values': values, 'metas':metas} %}
-        {% else %}
-            <a href='download_basket.php' target='_blank'>Download Basket</a><br/>&nbsp;<br/>
-        {% endif %}
-
+        {% include 'filter_table.twig' with {'values': values, 'metas':metas} %}
         {% include 'record_table.twig' with {'data': data, 'metas':metas} %}
     </section>
 {% endblock %}
