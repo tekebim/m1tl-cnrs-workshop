@@ -2,13 +2,12 @@
 
 class ProjectConfig
 {
-    public $templateSettings;
-    public $templateEditionPages;
     public $fileConfig;
     public $fileConfigPath;
     public $defaultFileConfig;
     public $defaultFileConfigPath;
     public $fileCSSColors;
+    public $twig;
 
     public function __construct()
     {
@@ -16,22 +15,8 @@ class ProjectConfig
         $need_auth = true;
         require_once("./environnement.php");
         require_once($_ENV["RELATIVE_PATH"] . "common/init.php");
-        // Load the template associated and pass param from global environnement
-        $this->templateSettings = $twig->render('admin/project-config-settings.twig', array(
-            "projectSlug" => _PROJECT_SLUG_,
-            "projectName" => _PROJECT_NAME_,
-            "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
-            "projectColorSecondary" => _PROJECT_COLOR_SECONDARY_,
-            "projectColorBodyText" => _PROJECT_COLOR_BODY_TEXT_,
-            "projectColorBodyBackground" => _PROJECT_COLOR_BODY_BACKGROUND_,
-            "projectColorHeaderText" => _PROJECT_COLOR_HEADER_TEXT_,
-            "projectColorHeaderBackground" => _PROJECT_COLOR_HEADER_BACKGROUND_,
-        ));
-
-        // Load the template associated and pass param from global environnement
-        $this->templateEditionPages = $twig->render('admin/project-config-pages.twig', array(
-            "projectSlug" => _PROJECT_SLUG_
-        ));
+        // Enable twig to be used in functions
+        $this->twig = $twig;
         // Initialize
         $this->fileCSSColors = "./assets/css/color_local.css";
         $this->defaultFileConfig = "./config/default.json";
@@ -76,7 +61,16 @@ class ProjectConfig
     public function renderSettingsForm()
     {
         echo '<main id="page-admin-configuration">';
-        echo $this->templateSettings;
+        echo $this->twig->render('admin/project-config-settings.twig', array(
+            "projectSlug" => _PROJECT_SLUG_,
+            "projectName" => _PROJECT_NAME_,
+            "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
+            "projectColorSecondary" => _PROJECT_COLOR_SECONDARY_,
+            "projectColorBodyText" => _PROJECT_COLOR_BODY_TEXT_,
+            "projectColorBodyBackground" => _PROJECT_COLOR_BODY_BACKGROUND_,
+            "projectColorHeaderText" => _PROJECT_COLOR_HEADER_TEXT_,
+            "projectColorHeaderBackground" => _PROJECT_COLOR_HEADER_BACKGROUND_,
+        ));
         echo '</main>';
     }
 
@@ -86,7 +80,9 @@ class ProjectConfig
     public function renderPagesForm()
     {
         echo '<main id="page-admin-configuration" class="configuration-pages">';
-        echo $this->templateEditionPages;
+        echo $this->twig->render('admin/project-config-pages.twig', array(
+            "projectSlug" => _PROJECT_SLUG_
+        ));
         echo '</main>';
     }
 
