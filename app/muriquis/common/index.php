@@ -4,6 +4,11 @@ $need_auth = false;
 $want_menu = true;
 require_once("./common/init.php");
 
+// If need to clear / reset form
+if (isset($_POST['reset-form'])) {
+    unset($_POST);
+}
+
 function str_to_sqldate($str)
 {
     $tmp = explode("/", $str);

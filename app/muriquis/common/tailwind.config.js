@@ -27,7 +27,11 @@ module.exports = {
           DEFAULT: 'var(--color-secondary)',
           dark: 'var(--color-secondary-darken)'
         },
-      }
+      },
+      stroke: theme => ({
+        'primary': theme('colors.primary'),
+        'secondary': theme('colors.secondary'),
+      })
     },
     screens: {
       sm: '480px',
@@ -36,9 +40,12 @@ module.exports = {
       xl: '1440px',
     },
     fontFamily: {
-      'sans': ['Asap', 'Arial', 'sans-serif']
+      'sans': ['Asap', 'Arial', 'sans-serif'],
+      'ipa': ['Voces', 'Arial', 'sans-serif']
     }
   },
-  variants: {},
+  variants: {
+    fill: ['hover', 'focus']
+  },
   plugins: [],
 }

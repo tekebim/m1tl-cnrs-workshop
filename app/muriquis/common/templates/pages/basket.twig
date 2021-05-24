@@ -4,10 +4,10 @@
 
 {% block content %}
     <section id="page-basket">
-        <div class="py-8">
+        <div class="pt-10">
             <h1 class="text-3xl text-center font-semibold leading-tight">Your selection</h1>
         </div>
-        {% include 'record_table.twig' with {'metas':metas, 'isBasket': true} %}
+        {% include 'components/table/record_table.twig' with {'metas':metas, 'isBasket': true} %}
 
         <div class="mx-6 md:mx-auto mb-8 bg-white border-t-4 border-primary-light rounded-b px-4 py-3 shadow-md w-full md:w-2/3"
              role="alert">

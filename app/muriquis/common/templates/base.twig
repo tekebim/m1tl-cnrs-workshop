@@ -7,6 +7,7 @@
     {% block metas %}
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Voces&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/assets/css/color_local.css">
         <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/common/dist/assets/css/main.css">
         <link rel="stylesheet" type="text/css" href="/{{ projectSlug }}/assets/css/custom.css"/>
@@ -88,7 +89,13 @@
                 </nav>
             {% endif %}
             <nav class="navbar">
-                <div class="logo"><a href="/{{ projectSlug }}/index.php">{{ projectName }}</a></div>
+                <div class="logo">
+                    <a href="/{{ projectSlug }}/index.php" class="flex items-center">
+                        <img src="{{ projectURL }}/{{ projectSlug }}/assets/img/logo_wb.png" width="40"
+                             alt="{{ projectName }}" class="mr-4"/>
+                        {{ projectName }}
+                    </a>
+                </div>
                 <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0 items-center">
                     {% for item in menu %}
                         {% if item['subitems'] %}

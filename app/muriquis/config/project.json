@@ -2,16 +2,16 @@
     "config": {
         "lastUpdate": "13/05/2021",
         "projectSlug": "muriquis",
-        "projectName": "Muriquis website",
+        "projectName": "Muriquis project",
         "colors": {
-            "projectColorPrimary": "#2428a8",
-            "projectColorPrimaryDarken": "#1d2087",
-            "projectColorPrimaryLighten": "#9294d4",
-            "projectColorSecondary": "#2c8a00",
-            "projectColorSecondaryDarken": "#246f00",
-            "projectColorSecondaryLighten": "#96c580",
-            "projectColorBodyText": "#2428a8",
-            "projectColorHeaderText": "#2428a8",
+            "projectColorPrimary": "#4b814d",
+            "projectColorPrimaryDarken": "#3c683e",
+            "projectColorPrimaryLighten": "#a5c0a6",
+            "projectColorSecondary": "#8a6c00",
+            "projectColorSecondaryDarken": "#6f5700",
+            "projectColorSecondaryLighten": "#c5b680",
+            "projectColorBodyText": "#173e0f",
+            "projectColorHeaderText": "#173e0f",
             "projectColorBodyBackground": "#eaf2e9",
             "projectColorHeaderBackground": "#ffffff"
         }
