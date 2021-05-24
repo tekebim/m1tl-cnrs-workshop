@@ -4,7 +4,9 @@ import Quill from 'quill';
  * Initialize function
  */
 const init = () => {
-  managePageMetas();
+  if (document.getElementById('page-admin-metas') !== null) {
+    managePageMetas();
+  }
   colorPicker();
   editorsWYSIWYG();
 }
@@ -13,9 +15,11 @@ const init = () => {
  * Function for Manage meta page
  */
 const managePageMetas = () => {
-  const root = document.querySelector(".tabs"),
-    tabs = root.querySelectorAll(".tab"),
-    btns = root.querySelectorAll(".btn");
+
+  const wrapper = document.getElementById('page-admin-metas');
+  const root = wrapper.querySelector(".tabs");
+  const tabs = root.querySelectorAll(".tab");
+  const btns = root.querySelectorAll(".btn");
 
   root.onclick = function (e) {
     var t = e.target, val = t.getAttribute("tab");
@@ -43,7 +47,8 @@ const editorsWYSIWYG = () => {
     [{'header': [1, 2, 3, 4, 5, 6, false]}],
     ['bold', 'italic', 'underline', 'strike'],
     ['blockquote', 'code-block'],
-    [{'header': 1}, {'header': 2}, {'header': 3}, {'header': 4}, {'header': 5}],
+    [{'header': 1}, {'header': 2}],
+    ['link'],
     [{'list': 'ordered'}, {'list': 'bullet'}],
     [{'script': 'sub'}, {'script': 'super'}],
     [{'indent': '-1'}, {'indent': '+1'}],

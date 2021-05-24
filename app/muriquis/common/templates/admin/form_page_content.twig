@@ -1,11 +1,14 @@
-<form class="form-update-page" data-page-id="{{ data['id'] }}" action="update_page_content.php" method="POST">
-    <div class="grid grid-cols-1 my-4">
-        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Image cover</label>
-        <div class="w-30">
-            {{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}
-            <img src="{{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}" width="150" alt="">
+<form class="form-update-page" data-page-id="{{ data['id'] }}"
+      action="{% if not isNewPage %}update_page_content.php{% else %}create_page_content.php{% endif %}" method="POST">
+    {% if not isNewPage %}
+        <div class="grid grid-cols-1 my-4">
+            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Image cover</label>
+            <div class="w-30">
+                {{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}
+                <img src="{{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}" width="150" alt="">
+            </div>
         </div>
-    </div>
+    {% endif %}
 
     <div class="relative inline-block text-gray-700 grid grid-cols-1 my-4">
         <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Template</label>
@@ -36,21 +39,30 @@
 
     <div class="flex flex-col">
         <label class="inline-flex items-center mt-3">
-            <input type="checkbox" {% if data['isActive'] %}checked{% endif %} name="page-is-active"
+            <input type="checkbox" {% if (data['isActive'] or isNewPage == true) %}checked{% endif %}
+                   name="page-is-active"
                    class="form-checkbox h-5 w-5 text-gray-600"><span class="ml-2 text-gray-700">Active page</span>
         </label>
     </div>
 
     <div class="my-4">
-        <input type="hidden" name="page-id" value="{{ data['id'] }}"/>
-        <button type="submit" name="removePage"
-                class='w-auto bg-red-600 hover:bg-red-700 rounded-lg shadow-xl font-medium text-white px-4 py-2 mr-4'>
-            Delete page
-        </button>
-        <button type="submit" name="updatePageContent"
-                class='w-auto bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
-            Update
-        </button>
+        {% if not isNewPage %}
+            <input type="hidden" name="page-id" value="{{ data['id'] }}"/>
+            <button type="submit" name="removePage"
+                    class='w-auto bg-red-600 hover:bg-red-700 rounded-lg shadow-xl font-medium text-white px-4 py-2 mr-4'>
+                Delete page
+            </button>
+            <button type="submit" name="updatePageContent"
+                    class='w-auto bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
+                Update
+            </button>
+        {% else %}
+            <input type="hidden" name="page-parent-id" value="{{ parentPageId }}"/>
+            <button type="submit" name="createPageContent"
+                    class='w-auto bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
+                Create page
+            </button>
+        {% endif %}
     </div>
 
 </form>

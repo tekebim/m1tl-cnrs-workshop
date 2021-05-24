@@ -153,7 +153,7 @@ function getItemsMenu()
     $itemsMenu = [];
     // If config file exist
     if ($fileConfig !== false) {
-        $configJson = json_decode(stripslashes($fileConfig), true);
+        $configJson = json_decode($fileConfig, true);
         // If configuration file is json
         if ($configJson !== null) {
             // If trying to rename the slug
@@ -165,7 +165,7 @@ function getItemsMenu()
                             if (count($pageConfig['subpages']) > 0) {
                                 $subitems = [];
                                 foreach ($pageConfig['subpages'] as $subpage => $subpageConfig) {
-                                    if($subpageConfig['isActive']) {
+                                    if ($subpageConfig['isActive']) {
                                         $subitems[] = ['id' => $subpageConfig['id'], 'title' => $subpageConfig['title']];
                                     }
                                 }

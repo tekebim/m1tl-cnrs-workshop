@@ -10,7 +10,7 @@ function loadConfig()
     // If config json file found
     if ($config !== false) {
         // Try to decode the json file
-        $configJson = json_decode(stripslashes($config), true);
+        $configJson = json_decode($config, true);
         // If configuration file is json
         if ($configJson !== null) {
             foreach ($configJson as $config => $cfg) {

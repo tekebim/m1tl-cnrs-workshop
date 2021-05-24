@@ -93,7 +93,7 @@ class ProjectConfig
         $data = [];
         // If config file exist
         if ($this->fileConfigPath !== false) {
-            $configJson = json_decode(stripslashes($this->fileConfigPath), true);
+            $configJson = json_decode($this->fileConfigPath, true);
             // If configuration file is json
             if ($configJson !== null) {
                 // If trying to rename the slug
@@ -121,7 +121,7 @@ class ProjectConfig
 
         // If config file exist
         if ($this->fileConfigPath !== false) {
-            $configJson = json_decode(stripslashes($this->fileConfigPath), true);
+            $configJson = json_decode($this->fileConfigPath, true);
             // If configuration file is json
             if ($configJson !== null) {
                 // If trying to rename the slug
@@ -195,7 +195,7 @@ class ProjectConfig
                 $configJson['config']['colors']['projectColorHeaderBackground'] = $newColorHeaderBackground;
 
                 // Save modifications to the json file
-                file_put_contents($this->fileConfig, json_encode($configJson));
+                file_put_contents($this->fileConfig, json_encode($configJson, JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
                 // If projet slug name need to be update
                 if ($updateDir) {

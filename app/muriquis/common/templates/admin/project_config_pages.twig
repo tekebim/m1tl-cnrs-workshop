@@ -80,16 +80,20 @@
                                             </tr>
                                             </tbody>
                                         </table>
-
-
+                                    </td>
                                 </tr>
                             {% endfor %}
                             <tr>
-                                <td colspan="2" class="text-center p-3">
+                                <td colspan="2" class="text-center p-3" x-data="{ show: false }">
                                     <button data-id="{{ page['id'] }}"
-                                            class="btn-edit-content-page px-4 py-2 text-white bg-gray-400 rounded select-none no-outline mx-4">
-                                        Add new subpage
+                                            class="btn-edit-content-page px-4 py-2 text-white bg-gray-400 rounded select-none no-outline mx-4"
+                                            @click="show = !show"
+                                            x-text="show ? 'Cancel': 'Add new subpage'">
                                     </button>
+
+                                    <div x-show="show">
+                                        {% include 'admin/form_page_content.twig' with {'isSubPage':true, 'parentPageId' : page['id'],  'isNewPage': true} %}
+                                    </div>
                                 </td>
                             </tr>
                         {% else %}
@@ -104,16 +108,17 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                <div class="flex justify-center pt-4">
-                    <button data-id="{{ page['id'] }}"
-                            class="flex btn-edit-content-page px-4 py-2 text-white bg-gray-600 rounded select-none no-outline mx-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        Add new page
-                    </button>
+                <div class="pt-4" x-data="{ show: false }">
+                    <div class="flex">
+                        <button data-id="{{ page['id'] }}"
+                                class="btn-create-new-page px-4 py-2 text-white bg-gray-600 rounded select-none no-outline"
+                                @click="show = !show"
+                                x-text="show ? 'Cancel': 'Add new page'">
+                        </button>
+                    </div>
+                    <div x-show="show">
+                        {% include 'admin/form_page_content.twig' with {'isSubPage:': false, 'isNewPage': true} %}
+                    </div>
                 </div>
             </div>
         </div>

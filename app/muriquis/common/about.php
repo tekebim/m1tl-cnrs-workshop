@@ -30,7 +30,7 @@ function getAboutContent($id)
     $defaultId = null;
     // If config file exist
     if ($fileConfig !== false) {
-        $configJson = json_decode(stripslashes($fileConfig), true);
+        $configJson = json_decode($fileConfig, true);
         // If configuration file is json
         if ($configJson !== null) {
             $pages = $configJson['pages'];

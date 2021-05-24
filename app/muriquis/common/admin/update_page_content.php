@@ -50,7 +50,7 @@ class PageUpdate
     public function updateContentPage($action)
     {
         if ($this->fileConfig !== false) {
-            $configJson = json_decode(stripslashes($this->fileConfig), true);
+            $configJson = json_decode($this->fileConfig, true);
             // If configuration file json found
             if ($configJson !== null) {
                 $pages = $configJson['pages'];
@@ -61,19 +61,21 @@ class PageUpdate
                         // Loop on each subpages
                         if ($subpages) {
                             for ($s = 0; $s < count($pages[$i]['subpages']); $s++) {
-                                if ((int)$subpages[$s]['id'] === $this->pageId) {
+                                if ((int)$subpages[$s]['id'] === (int)$this->pageId) {
                                     if ($action === 'delete') {
-                                        // Delete element
                                         unset($configJson['pages'][$i]['subpages'][$s]);
+                                        // Save the file
+                                        file_put_contents($this->fileConfigPath, json_encode($configJson, JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+                                        break;
                                     } else if ($action === 'update') {
                                         $configJson['pages'][$i]['subpages'][$s]['isActive'] = $_POST['page-is-active'] === 'on' ? true : false;
                                         $configJson['pages'][$i]['subpages'][$s]['title'] = $_POST['page-title'];
                                         $configJson['pages'][$i]['subpages'][$s]['template'] = $_POST['page-template'];
-                                        $configJson['pages'][$i]['subpages'][$s]['content'] = $_POST['page-content'];
+                                        $configJson['pages'][$i]['subpages'][$s]['content'] = $_POST['page-content'];// Save the file
+
+                                        file_put_contents($this->fileConfigPath, json_encode($configJson, JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+                                        break;
                                     }
-                                    // Save the file
-                                    file_put_contents($this->fileConfigPath, json_encode($configJson));
-                                    break;
                                 }
                             }
                         }
@@ -85,43 +87,4 @@ class PageUpdate
 }
 
 $page = new PageUpdate();
-
-/*
-if (isset($_POST['updatePageContent'])) {
-    // If config file exist
-    if ($fileConfig !== false) {
-        $configJson = json_decode(stripslashes($fileConfig), true);
-        // If configuration file is json
-        if ($configJson !== null) {
-            $pages = $configJson['pages'];
-            if ($pages) {
-                for ($i = 0; $i < count($pages); $i++) {
-                    $subpages = $pages[$i]['subpages'];
-                    if ($subpages) {
-                        for ($s = 0; $s < count($pages[$i]['subpages']); $s++) {
-                            if ((int)$subpages[$s]['id'] === (int)$_POST['page-id']) {
-                                $configJson['pages'][$i]['subpages'][$s]['isActive'] = $_POST['page-is-active'] === 'on' ? true : false;
-                                $configJson['pages'][$i]['subpages'][$s]['title'] = $_POST['page-title'];
-                                $configJson['pages'][$i]['subpages'][$s]['template'] = $_POST['page-template'];
-                                $configJson['pages'][$i]['subpages'][$s]['content'] = $_POST['page-content'];
-                                file_put_contents($fileConfigPath, json_encode($configJson));
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    header('Location: ./project_configuration.php?edition=pages');
-} elseif (isset($_POST['removePage'])) {
-    var_dump('removePage');
-    updateContentPage('delete', (int)$_POST['page-id']);
-    die();
-} else {
-// Redirect to index
-    header('Location: ../index.php');
-    die();
-}
-*/
 
