@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        {% include 'filter_table.twig' with {'values': values, 'metas':metas} %}
-        {% include 'record_table.twig' with {'data': data, 'metas':metas} %}
+        {% include 'components/table/filter_table.twig' with {'values': values, 'metas':metas} %}
+        {% include 'components/table/record_table.twig' with {'data': data, 'metas':metas} %}
     </section>
 {% endblock %}
