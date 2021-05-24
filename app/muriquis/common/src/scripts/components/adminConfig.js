@@ -4,10 +4,35 @@ import Quill from 'quill';
  * Initialize function
  */
 const init = () => {
+  managePageMetas();
   colorPicker();
   editorsWYSIWYG();
 }
 
+/**
+ * Function for Manage meta page
+ */
+const managePageMetas = () => {
+  const root = document.querySelector(".tabs"),
+    tabs = root.querySelectorAll(".tab"),
+    btns = root.querySelectorAll(".btn");
+
+  root.onclick = function (e) {
+    var t = e.target, val = t.getAttribute("tab");
+    if (val != null) {
+      tabs.forEach(each => {
+        each.classList.remove("active-tab");
+      });
+      btns.forEach(each => {
+        each.classList.remove("active-button");
+      });
+      tabs[val - 1].classList.add("active-tab");
+      btns[val - 1].classList.add("active-button");
+    }
+  }
+  // Fake first item click
+  btns[0].click();
+}
 /*
 * Function for editor WYSIWYG
  */
