@@ -61,7 +61,7 @@ class ProjectConfig
      */
     public function renderSettingsForm()
     {
-        echo $this->twig->render('admin/project-config-settings.twig', array(
+        echo $this->twig->render('admin/project_config_settings.twig', array(
             "projectSlug" => _PROJECT_SLUG_,
             "projectName" => _PROJECT_NAME_,
             "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
@@ -79,7 +79,7 @@ class ProjectConfig
     public function renderPagesForm()
     {
         $pages = $this->loadConfigPages();
-        echo $this->twig->render('admin/project-config-pages.twig', array(
+        echo $this->twig->render('admin/project_config_pages.twig', array(
             "projectSlug" => _PROJECT_SLUG_,
             "pages" => $pages
         ));

@@ -53,22 +53,35 @@
                             {# Loop on each subpage #}
                             {% for subpage in page['subpages'] %}
                                 <tr x-data="{ show: false }">
-                                    <td class="p-6">
-                                        <span class="block font-semibold">&#8212; {{ subpage['title']|capitalize }}</span>
-                                        <div x-show="show">
-                                            {% include 'admin/form-page-content.twig' with {'data' : subpage} %}
-                                        </div>
-
-                                    <td class="p-6 text-right w-10">
-                                        <button data-id="{{ subpage['id'] }}"
-                                                class="btn-edit-content-page font-semibold px-3 py-1 rounded-full text-white bg-green-600 rounded mx-4 outline-none focus:outline-none"
-                                                @click="show = !show"
-                                                x-text="show ? 'Close': 'Edit'">
-                                        </button>
-                                        <span class="text-green-800 {% if subpage['isActive'] %}bg-green-200{% else %}bg-red-200{% endif %} font-semibold px-3 py-1 rounded-full">
+                                    <td class="p-6" colspan="2">
+                                        <table class="mx-auto w-full whitespace-nowrap rounded-lg bg-white divide-y border divide-gray-300 mx-6">
+                                            <tbody>
+                                            <tr>
+                                                <td class="p-6">
+                                                    <span class="block font-semibold">&#8212; {{ subpage['title']|capitalize }}</span>
+                                                </td>
+                                                <td class="p-6 text-right w-10">
+                                                    <button data-id="{{ subpage['id'] }}"
+                                                            class="btn-edit-content-page font-semibold px-3 py-1 rounded-full text-white bg-green-600 rounded mx-4 outline-none focus:outline-none"
+                                                            @click="show = !show"
+                                                            x-text="show ? 'Close': 'Edit'">
+                                                    </button>
+                                                    <span class="text-green-800 {% if subpage['isActive'] %}bg-green-200{% else %}bg-red-200{% endif %} font-semibold px-3 py-1 rounded-full">
                                             {% if subpage['isActive'] %}Active{% else %}Disabled{% endif %}
                                         </span>
-                                    </td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" class="px-6">
+                                                    <div x-show="show">
+                                                        {% include 'admin/form_page_content.twig' with {'data' : subpage} %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+
                                 </tr>
                             {% endfor %}
                             <tr>
@@ -94,8 +107,10 @@
                 <div class="flex justify-center pt-4">
                     <button data-id="{{ page['id'] }}"
                             class="flex btn-edit-content-page px-4 py-2 text-white bg-gray-600 rounded select-none no-outline mx-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                         Add new page
                     </button>
