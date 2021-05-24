@@ -1,0 +1,105 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ projectName }} - Manage metas{% endblock %}
+
+{% block content %}
+    <section id="page-admin-configuration" class="page-admin-metas">
+        <div class="tabs min-w-xl max-w-3xl mx-auto text-indigo-800 m-10 ">
+
+            <div class="top flex text-gray-100 bg-indigo-800 rounded-t-md overflow-hidden">
+                <div class="buttons ml-auto my-auto flex">
+                    {% for data in datas %}
+                        <span tab="{{ loop.index }}"
+                              class="btn  cursor-pointer p-2 px-3">{{ data['table_name'] }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="center text-gray-800 relative">
+                <!-- tab start -->
+                <div class=" bg-white rounded-b-md w-full border border-t-0  top-0">
+
+                    {% for data in datas %}
+                        <div class="tab mx-4 mt-15 pt-15" id="table-{{ data['table_name'] }}">
+                            <h1 class="text-4xl">Gestion de la base - table {{ data['table_name'] }}</h1>
+
+                            <h2 class="text-xl">Champs obligatoires</h2>
+                            <ul>
+                                {% for data in data['required_fields'] %}
+                                    <li>{{ data }}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <h2 class="text-xl">Champs optionels</h2>
+                            <!-- Form Gestion de la base -->
+                            <div class="flex flex-col px-4  ">
+                                <div class='  '>
+
+                                    <!-- Table -->
+                                    <table class='mx-auto  w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 '>
+                                        <thead class="bg-gray-50">
+                                        <tr class="text-gray-600 text-left">
+                                            <th class="font-semibold text-sm  px-6 py-4">
+
+                                            </th>
+                                            <th class="font-semibold text-sm text-center  px-6 py-4">
+                                                Nom (unique)
+                                            </th>
+                                            <th class="font-semibold text-sm text-center uppercase px-6 py-4">
+                                                Type
+                                            </th>
+                                            <th class="font-semibold text-sm text-center uppercase px-6 py-4 ">
+                                                Description
+                                            </th>
+                                            <th class="font-semibold text-sm  uppercase px-6 py-4 ">
+                                                Actif
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                        {% for data in data['meta_fields'] %}
+                                            <tr class="{% if loop.index % 2 == 0 %}bg-gray-100{% endif %}"
+                                                id="eq{{ data["id"] }}">
+                                                {% include 'one_meta.twig' with {'data': data} %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Button -->
+                                <div class="mt-4  mx-auto w-full">
+                                    <a href="edit_meta.php?metaid=-1&table={{ data['table_name'] }}"
+                                       class="mt-3 bg-primary px-4 py-2 w-full font-semibold tracking-wider text-white inline-flex items-center justify-center space-x-2 rounded hover:bg-primary-dark">
+                                        <svg class="h-8 w-8 mx-4 text-white" viewBox="0 0 24 24" fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <line x1="12" y1="8" x2="12" y2="16"/>
+                                            <line x1="8" y1="12" x2="16" y2="12"/>
+                                        </svg>
+                                        Ajouter un nouveau champ optionnel
+                                    </a>
+                                </div>
+
+                                <div>
+                                    <a href="edit_meta.php?metaid=-1&table={{ data['table_name'] }}"
+                                       class="mt-3 bg-secondary px-4 py-2 w-full font-semibold tracking-wider text-white inline-flex items-center justify-center space-x-2 rounded hover:bg-secondary-dark">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                             viewBox="0 0 24 24"
+                                             stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                        </svg>
+                                        Recalculate Database
+                                    </a>
+                                </div>
+                                <!-- Button end -->
+                            </div>
+                            <!-- Form Gestion de la base end-->
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- tab end -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

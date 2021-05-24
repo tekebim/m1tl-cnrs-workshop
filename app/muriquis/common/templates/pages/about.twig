@@ -3,5 +3,8 @@
 {% block title %}{{ projectName }} - About{% endblock %}
 
 {% block content %}
-    <h1>Page about</h1>
+    <div class="container mx-auto">
+        <h1>{{ content['title'] }}</h1>
+        {{ content['content']|raw }}
+    </div>
 {% endblock %}

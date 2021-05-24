@@ -1,0 +1,56 @@
+<form class="form-update-page" data-page-id="{{ data['id'] }}" action="update_page_content.php" method="POST">
+    <div class="grid grid-cols-1 my-4">
+        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Image cover</label>
+        <div class="w-30">
+            {{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}
+            <img src="{{ projectURL }}/{{ projectSlug }}/assets/img/{{ data['image'] }}" width="150" alt="">
+        </div>
+    </div>
+
+    <div class="relative inline-block text-gray-700 grid grid-cols-1 my-4">
+        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Template</label>
+        <select class="w-full h-10 pl-3 pr-6 text-base border rounded-lg focus:shadow-outline" name="page-template">
+            <option {% if data['template'] == 1 %}selected{% endif %} value="1">Template 1 (img left | content right)
+            </option>
+            <option {% if data['template'] == 2 %}selected{% endif %} value="2">Template 2 (img on top | content full
+                width)
+            </option>
+            <option {% if data['template'] == 3 %}selected{% endif %} value="3">Template 3 (text only)
+            </option>
+        </select>
+    </div>
+
+    <div class="grid grid-cols-1 my-4">
+        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Title</label>
+        <input class="py-2 px-3 border border-gray-300 mt-1"
+               type="text" name="page-title" placeholder="Title page" value="{{ data['title'] }}"/>
+    </div>
+
+    <div class="grid grid-cols-1 my-4">
+        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Content</label>
+        <div id="page-content-editor-{{ data['id'] }}" class="page-content-editor">
+            {{ data['content']|raw }}
+        </div>
+        <textarea name="page-content" id="page-content-{{ data['id'] }}" class="page-content hidden"></textarea>
+    </div>
+
+    <div class="flex flex-col">
+        <label class="inline-flex items-center mt-3">
+            <input type="checkbox" {% if data['isActive'] %}checked{% endif %} name="page-is-active"
+                   class="form-checkbox h-5 w-5 text-gray-600"><span class="ml-2 text-gray-700">Active page</span>
+        </label>
+    </div>
+
+    <div class="my-4">
+        <input type="hidden" name="page-id" value="{{ data['id'] }}"/>
+        <button type="submit" name="removePage"
+                class='w-auto bg-red-600 hover:bg-red-700 rounded-lg shadow-xl font-medium text-white px-4 py-2 mr-4'>
+            Delete page
+        </button>
+        <button type="submit" name="updatePageContent"
+                class='w-auto bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
+            Update
+        </button>
+    </div>
+
+</form>

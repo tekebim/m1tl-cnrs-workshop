@@ -4,19 +4,19 @@ $need_auth = true;
 $want_menu = true;
 require_once(ROOT_DIR . "/common/init.php");
 
-// Allowed tables name
-$allowedTable = ["record", "production", "speaker"];
-$data = [];
-// Loop
-for ($i = 0; $i <= count($allowedTable) - 1; $i++) {
-    $table_name = $allowedTable[$i];
+// Table autoriser sur lesquels boucler
+$allowTable = ["record", "production","speaker"];
+
+// Start loop
+for($i = 0; $i <= count($allowTable)-1; $i++){
+    $table_name = $allowTable[$i];
     $required_fields = [];
     $meta_fields = [];
 
     $SQL = "SELECT `COLUMN_NAME`, `DATA_TYPE` , `COLUMN_TYPE`, `EXTRA`
-	FROM `INFORMATION_SCHEMA`.`COLUMNS`
-	WHERE `TABLE_SCHEMA`='cri_singe'
-		AND `TABLE_NAME`='" . $table_name . "';";
+        FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+        WHERE `TABLE_SCHEMA`='cri_singe' 
+            AND `TABLE_NAME`='" . $table_name . "';";
     $res = $dbh->executeQuery($SQL);
 
     while ($row = $res->fetch_assoc()) {
@@ -36,7 +36,7 @@ for ($i = 0; $i <= count($allowedTable) - 1; $i++) {
 
 }
 
-echo $twig->render('manage_meta.twig', array(
+echo $twig->render('admin/manage_meta.twig', array(
     "datas" => $datas,
     "projectName" => _PROJECT_NAME_
 ));

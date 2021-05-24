@@ -61,8 +61,7 @@ class ProjectConfig
      */
     public function renderSettingsForm()
     {
-        echo '<main id="page-admin-configuration">';
-        echo $this->twig->render('admin/project-config-settings.twig', array(
+        echo $this->twig->render('admin/project_config_settings.twig', array(
             "projectSlug" => _PROJECT_SLUG_,
             "projectName" => _PROJECT_NAME_,
             "projectColorPrimary" => _PROJECT_COLOR_PRIMARY_,
@@ -72,7 +71,6 @@ class ProjectConfig
             "projectColorHeaderText" => _PROJECT_COLOR_HEADER_TEXT_,
             "projectColorHeaderBackground" => _PROJECT_COLOR_HEADER_BACKGROUND_,
         ));
-        echo '</main>';
     }
 
     /**
@@ -81,12 +79,10 @@ class ProjectConfig
     public function renderPagesForm()
     {
         $pages = $this->loadConfigPages();
-        echo '<main id="page-admin-configuration" class="configuration-pages">';
-        echo $this->twig->render('admin/project-config-pages.twig', array(
+        echo $this->twig->render('admin/project_config_pages.twig', array(
             "projectSlug" => _PROJECT_SLUG_,
             "pages" => $pages
         ));
-        echo '</main>';
     }
 
     /**
@@ -103,8 +99,8 @@ class ProjectConfig
                 // If trying to rename the slug
                 if ($configJson['pages']) {
                     $pages = $configJson['pages'];
-                    foreach ($pages as $page => $pageCconfig) {
-                        $data[] = $pageCconfig;
+                    foreach ($pages as $page => $pageConfig) {
+                        $data[] = $pageConfig;
                     }
                 }
             }

@@ -2,6 +2,7 @@
 <head>
     {% block head %}
         <title>{% block title %}Project{% endblock %}</title>
+        <meta charset="UTF-8">
     {% endblock %}
     {% block metas %}
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,7 +14,6 @@
     {% endblock %}
 </head>
 <body>
-
 {% block header %}
     {% if want_menu == true %}
         <header class="sticky top-0 z-40">
@@ -25,7 +25,7 @@
 
                     <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0">
                         <li class="relative parent hover:bg-gray-800">
-                            <a href="#"
+                            <a href="/{{ projectSlug }}/admin/manage_meta.php"
                                class="flex justify-between md:inline-flex p-4 items-center space-x-2 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor">
@@ -33,31 +33,11 @@
                                           d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
                                 </svg>
                                 <span>Database Management</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
-                                     viewBox="0 0 24 24">
-                                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
-                                </svg>
                             </a>
-                            <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-gray-800 md:shadow-lg md:rounded-b ">
-                                <li>
-                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=record"
-                                       class="navbar-sub-li text-white">Records</a>
-                                </li>
-                                <li>
-                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=production" class="navbar-sub-li text-white">Productions</a>
-                                </li>
-                                <li>
-                                    <a href="/{{ projectSlug }}/admin/manage_meta.php?table=speaker"
-                                       class="navbar-sub-li text-white">Speakers</a>
-                                </li>
-                                <li>
-                                    <a href="/{{ projectSlug }}/admin/remake_db.php" class="navbar-sub-li text-white">Recalculate
-                                        database</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
-                            <a href="/{{ projectSlug }}/admin/edit_meta.php" class="navbar-li text-white hover:bg-gray-800">
+                            <a href="/{{ projectSlug }}/admin/edit_meta.php"
+                               class="navbar-li text-white hover:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -94,7 +74,8 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="/{{ projectSlug }}/login.php?logout=1" class="navbar-li text-white hover:bg-gray-800">
+                            <a href="/{{ projectSlug }}/login.php?logout=1"
+                               class="navbar-li text-white hover:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -106,16 +87,36 @@
                     </ul>
                 </nav>
             {% endif %}
-            {{ app }}
             <nav class="navbar">
-                <div class="logo"><a href="index.php">{{ projectName }}</a></div>
+                <div class="logo"><a href="/{{ projectSlug }}/index.php">{{ projectName }}</a></div>
                 <ul class="md:px-2 md:flex md:space-x-2 ml-auto absolute md:relative top-full left-0 right-0 items-center">
-                    <li>
-                        <a href="/{{ projectSlug }}/index.php" class="navbar-li hover-li"><span>Home</span></a>
-                    </li>
-                    <li>
-                        <a href="/{{ projectSlug }}/about.php" class="navbar-li hover-li"><span>About us</span></a>
-                    </li>
+                    {% for item in menu %}
+                        {% if item['subitems'] %}
+                            <li class="relative parent">
+                                <a href="#" class="flex justify-between navbar-li hover-li">
+                                    <span>{{ item['title'] }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                         viewBox="0 0 24 24">
+                                        <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                                    </svg>
+                                </a>
+
+                                <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-white md:shadow-lg md:rounded-b">
+                                    {% for subitem in item['subitems'] %}
+                                        <li>
+                                            <a href="/{{ projectSlug }}/{{ item['url'] }}?pid={{ subitem['id'] }}"
+                                               class="navbar-sub-li text-color-primary">{{ subitem['title'] }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="/{{ projectSlug }}/{{ item['url'] }}"
+                                   class="navbar-li hover-li"><span>{{ item['title'] }}</span></a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                     {% if user_id != 1 %}
                         <li>
                             <a href="/{{ projectSlug }}/login.php" class="navbar-li hover-li"><span>Admin</span></a>
