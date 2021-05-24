@@ -17,7 +17,8 @@ body {
 
 /***** Page About *******/
 #page-about h1 {
-    @apply text-4xl;
+    @apply text-4xl mb-5;
+
 }
 
 #page-about h2 {
@@ -27,6 +28,11 @@ body {
 #page-about h3 {
     @apply text-2xl;
 }
+#page-about p {
+    @apply text-lg m-3;
+}
+
+
 
 /***** Navbar *******/
 .navbar {
