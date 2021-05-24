@@ -165,7 +165,7 @@ body {
 
 .active-button {
     background: white !important;
-    color: #3730a3;
+    color: var(--color-primary-darken);
 }
 
 /* Colors */
@@ -187,6 +187,27 @@ body {
 .bg-secondary:hover {
     background: var(--color-secondary-darken);
     @apply text-white;
+}
+
+/* Login */
+.login .input {
+    transition: border 0.2s ease-in-out;
+    min-width: 280px
+}
+
+.login .input:focus + .label,
+.login .input:active + .label,
+.login .input.filled + .label {
+    font-size: .75rem;
+    transition: all 0.2s ease-out;
+    top: -0.1rem;
+    color: var(--color-primary);
+}
+
+.login .label {
+    transition: all 0.2s ease-out;
+    top: 0.4rem;
+    left: 0;
 }
 
 /* Toggle checkbox */
