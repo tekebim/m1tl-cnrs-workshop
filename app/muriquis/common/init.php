@@ -58,7 +58,7 @@ if ($need_auth and $user_id == -1) {
     if ($ajax) {
         echo "Authentification requise";
     } else {
-        header('Location: login . php');
+        header('Location: login.php');
     }
     exit();
 }
