@@ -206,7 +206,6 @@ body {
 }
 
 .table-results .col-record {
-    min-height: 2rem;
     @apply px-2 py-1 text-sm text-center;
 }
 
