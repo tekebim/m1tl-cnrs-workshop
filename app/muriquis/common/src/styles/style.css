@@ -85,8 +85,42 @@ body {
     }
 }
 
+/*** Mange_meta ***/
+
+.odd {
+	background-color: var(--table-odd-background-color);
+	color: var(--table-odd-color);
+}
+.even {
+	background-color: var(--table-even-background-color);
+	color: var(--table-even-color);
+}
+
+
+.tab {
+  opacity:0;
+  display:none;
+  transform:translate(0,50px);
+}
+
+.active-tab,.active-button{
+  transition:transform 0.2s,background-color 0.2s;
+}
+
+.active-tab{
+  display:block;
+  opacity:1;
+  transform:translate(0,0);
+  z-index:99;
+}
+.active-button{
+  background:white !important;
+  color:#3730a3;
+}
+
 /* Colors */
 .bg-primary {
+    background: var(--body-primary);
     @apply text-white;
 }
 
@@ -96,6 +130,7 @@ body {
 }
 
 .bg-secondary {
+    background: var(--body-secondary);
     @apply text-white;
 }
 
