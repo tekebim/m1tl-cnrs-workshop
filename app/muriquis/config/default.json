@@ -1,0 +1,26 @@
+{
+  "config": {
+    "projectSlug": "muriquis",
+    "projectName": "Muriquis website",
+    "colors": {
+      "projectColorPrimary": "#a8246a",
+      "projectColorPrimaryDarken": "#871d55",
+      "projectColorPrimaryLighten": "#d492b5",
+      "projectColorSecondary": "#5de7f9",
+      "projectColorSecondaryDarken": "#4bb9c8",
+      "projectColorSecondaryLighten": "#aef3fc",
+      "projectBodyTextColor": "#000000",
+      "projectBodyBackgroundColor": "#FFFFFF",
+      "projectHeaderTextColor": "#fce780",
+      "projectHeaderBackgroundColor": "#FFFFFF"
+    }
+  },
+  "pages": {
+    "about": {
+      "page-1": {
+        "id": 1,
+        "template": 2
+      }
+    }
+  }
+}
