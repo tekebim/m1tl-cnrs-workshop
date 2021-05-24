@@ -29,15 +29,14 @@ for ($i = 0; $i <= count($allowedTable) - 1; $i++) {
         $meta_fields[] = $row;
     }
 
-    $data[] = [
+    $datas[] = [
         'table_name' => $table_name,
         'required_fields' => $required_fields,
         'meta_fields' => $meta_fields];
+
 }
 
 echo $twig->render('manage_meta.twig', array(
-    "table" => $table_name,
-    "required" => $required_fields,
-    "meta" => $meta_fields,
+    "datas" => $datas,
     "projectName" => _PROJECT_NAME_
 ));
