@@ -1,28 +1,17 @@
 :root {
-  --body-primary: #001fb8;
-  --body-primary-darken: #1e2151;
+    --color-primary: #2428a8;
+    --color-primary-darken: #1d2087;
+    --color-primary-lighten: #9294d4;
 
-  --body-secondary: #001994;
-  --body-secondary-darken: #852d2d;
+    --color-secondary: #aa2c3f;
+    --color-secondary-darken: #882433;
+    --color-secondary-lighten: #d5969f;
 
-  --body-color: #001fb8;
-  --body-background-color: #FFEFD5;
+    --body-text-color: #2428a8;
+    --body-background-color: #eaf2e9;
 
-  --menu-text-color: #ffffff;
-  --menu-text-inverse-color: #000000;
-  --menu-bg-color: #556B2F;
-  --menu-bg-hover-color: #4cb6ea;
-  --menu-open-border-top-color : rgba(110, 110, 110, 0.25);
+    --header-text-color: #2428a8;
+    --header-background-color: #ffffff;
 
-  --table-odd-background-color: #58781c;
-  --table-odd-color: #ffffff;
-  --table-even-background-color: #709c25;
-  --table-even-color: #ffffff;
-  --table-hover-background-color: #9c9425;
-  --table-hover-color: #ffffff;
-
-  --table-cell-border-color: #999999;
-
-  --table-header-color: #ffffff;
-  --table-header-background-color: #556B2F;
+    --table-even-background-color: #dedede;
 }

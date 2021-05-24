@@ -1,4 +1,4 @@
 <?php
-require_once("environnement.php");
-require_once($_ENV["RELATIVE_PATH_COMMON"] . "add_to_basket.php");
+require_once(__DIR__ . "/environnement.php");
+require_once(ROOT_DIR . "/common/add_to_basket.php");
 
