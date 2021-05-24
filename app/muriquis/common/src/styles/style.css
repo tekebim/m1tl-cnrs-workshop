@@ -120,7 +120,7 @@ body {
 
 /* Colors */
 .bg-primary {
-    background: var(--body-primary);
+    background: var(--color-primary);
     @apply text-white;
 }
 
@@ -130,7 +130,7 @@ body {
 }
 
 .bg-secondary {
-    background: var(--body-secondary);
+    background: var(--color-secondary);
     @apply text-white;
 }
 
