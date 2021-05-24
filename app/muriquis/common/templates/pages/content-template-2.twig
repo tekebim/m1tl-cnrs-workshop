@@ -1,9 +1,9 @@
 <div class="container">
-    <div>
-        <div class="w-full">
-            {{ content['image'] }}
+    <div class="content-template-2">
+        <div class="cover-image bg-cover bg-no-repeat bg-center relative"
+             style="background-image: url('{{ projectURL }}/{{ projectSlug }}/assets/img/{{ content['image'] }}')">
         </div>
-        <div class="w-full bg-white">
+        <div class="w-full bg-white p-20 mb-8">
             {{ content['content']|raw }}
         </div>
     </div>

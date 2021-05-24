@@ -16,53 +16,65 @@ body {
 }
 
 /***** Page About *******/
-#page-about .container h1 {
-    @apply text-4xl mb-5;
-
-}
-
 #page-about .container h2 {
-    @apply text-3xl;
+    @apply text-4xl mb-5;
 }
 
 #page-about .container h3 {
+    @apply text-3xl;
+}
+
+#page-about .container h4 {
     @apply text-2xl;
 }
+
 #page-about .container p {
-    @apply text-lg m-3;
+    @apply text-lg my-3 font-light;
 }
+
 #page-about .container strong {
     @apply font-extrabold;
 }
+
 #page-about .container blockquote {
     @apply text-primary-light text-xl my-3 mx-10;
 }
+
 #page-about .container pre {
     @apply bg-black text-gray-50 font-light my-2 mx-3 px-1 rounded;
 }
+
+#page-about .container ul {
+    list-style: disc;
+}
+
 #page-about .container li {
-    @apply  mx-3;
+    @apply mx-3;
 }
+
 #page-about .container li:first-child {
-    @apply  mx-3 mt-4;
+    @apply mx-3 mt-4;
 }
+
 #page-about .container li:last-child {
-    @apply  mx-3 mb-4;
+    @apply mx-3 mb-4;
 }
+
 #page-about .container .ql-size-small {
     @apply text-sm;
 }
+
 #page-about .container .ql-size-large {
     @apply text-2xl;
 }
+
 #page-about .container .ql-size-huge {
     @apply text-4xl;
 }
 
-
-
-
-
+.content-template-2 .cover-image {
+    min-height: 30em;
+}
 
 /***** Navbar *******/
 .navbar {
