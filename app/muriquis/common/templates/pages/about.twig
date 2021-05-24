@@ -5,6 +5,12 @@
 {% block content %}
     <div class="container mx-auto">
         <h1>{{ content['title'] }}</h1>
-        {{ content['content']|raw }}
+        {% if content['template'] == "1" %}
+            {% include 'pages/content-template-1.twig' with {'content': content} %}
+        {% elseif content['template'] == "2" %}
+            {% include 'pages/content-template-2.twig' with {'content': content} %}
+        {% elseif content['template'] == "3" %}
+            {% include 'pages/content-template-3.twig' with {'content': content} %}
+        {% endif %}
     </div>
 {% endblock %}
