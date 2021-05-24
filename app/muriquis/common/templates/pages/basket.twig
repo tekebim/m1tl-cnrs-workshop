@@ -1,0 +1,56 @@
+{% extends "base.twig" %}
+
+{% block title %}{{ projectName }}{% endblock %}
+
+{% block content %}
+    <section id="page-basket">
+        <div class="pt-10">
+            <h1 class="text-3xl text-center font-semibold leading-tight">Your selection</h1>
+        </div>
+        {% include 'components/table/record_table.twig' with {'metas':metas, 'isBasket': true} %}
+
+        <div class="mx-6 md:mx-auto mb-8 bg-white border-t-4 border-primary-light rounded-b px-4 py-3 shadow-md w-full md:w-2/3"
+             role="alert">
+            <div class="flex justify-center">
+                <div class="text-center">
+                    <p class="font-bold flex">
+                        <svg class="fill-current h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg"
+                                              viewBox="0 0 20 20">
+                            <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+                        </svg>If you want to share this results with someone else, you can share this
+                        dedicated link bellow :</p>
+                    <a href="#" id="share-link" target="_blank"
+                       class="text-sm underline text-secondary">{{ currentWebsiteURL }}index.php?<span id="dynmamic-ids"></span></a>
+                    <div class="mt-4 text-center">
+                        <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
+                            <a href="#" target="_blank" id="btn-copy-clipboard"
+                               x-on:click="tooltip = true" x-on:mouseleave="tooltip = false"
+                               class="bg-secondary hover:bg-secondary-dark text-white text-xs font-bold py-2 px-4 rounded inline-flex items-center rounded-full">
+                                Copy share link
+                            </a>
+                            <div class="relative" x-cloak x-show.transition.origin.top="tooltip">
+                                <div class="absolute top-0 z-10 w-60 p-2 -mt-1 mx-4 text-sm leading-tight text-secondary transform bg-white border-2 border-secondary rounded-lg shadow-lg">
+                                    Link copied
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pb-8">
+            <a href="download_basket.php" target="_blank"
+               class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded inline-flex items-center rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download this selection
+            </a>
+        </div>
+    </section>
+{% endblock %}
+
+

@@ -15,8 +15,7 @@ services:
         '--collation-server=utf8mb4_unicode_ci'
     ]
     volumes:
-      - './data/init:/docker-entrypoint-initdb.d'
-      - './data/mysql:/var/lib/mysql'
+      - './data/database/mysql:/var/lib/mysql'
     environment:
       MYSQL_DATABASE: "${DB_NAME}"
       MYSQL_USER: "${DB_USER}"

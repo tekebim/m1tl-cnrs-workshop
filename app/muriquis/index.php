@@ -1,3 +1,3 @@
 <?php
-require_once("environnement.php");
-require_once($_ENV["RELATIVE_PATH_COMMON"] . "index.php");
+require_once(__DIR__ . "/environnement.php");
+require_once(ROOT_DIR . "/common/index.php");

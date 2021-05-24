@@ -1,0 +1,72 @@
+<tr data-id="{{ data[0]["record_id"] }}"
+    class="to-animate bg-white duration-300 {% if data[0]["in_basket"] and not isBasket %}record--selected{% endif %}">
+    <td class="col-record" height="60">
+        <div class="flex actions-checkbox justify-center">
+            {% if isBasket is defined and isBasket %}
+                <svg id="b_{{ data[0]["record_id"] }}_rem" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                     viewBox="0 0 20 20"
+                     fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
+                          clip-rule="evenodd"/>
+                </svg>
+            {% else %}
+                <svg id="b_{{ data[0]["record_id"] }}_rem" data-id="{{ data[0]["record_id"] }}"
+                     class="{% if not data[0]["in_basket"] %}hidden{% endif %} w-6 h-6 action_icon action--remove cursor-pointer"
+                     width="24" height="24"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.041 17l-4.5-4.319 1.395-1.435 3.08 2.937 7.021-7.183 1.422 1.409-8.418 8.591zm-5.041-15c-1.654 0-3 1.346-3 3v14c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3v-14c0-1.654-1.346-3-3-3h-14zm19 3v14c0 2.761-2.238 5-5 5h-14c-2.762 0-5-2.239-5-5v-14c0-2.761 2.238-5 5-5h14c2.762 0 5 2.239 5 5z"/>
+                </svg>
+                <svg id="b_{{ data[0]["record_id"] }}_add" data-id="{{ data[0]["record_id"] }}"
+                     class="{% if data[0]["in_basket"] %}hidden{% endif %} w-6 h-6 action_icon action--add {% if data[0]["in_basket"] %}selected{% endif %} cursor-pointer"
+                     width="24" height="24"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 2c-1.654 0-3 1.346-3 3v14c0 1.654 1.346 3 3 3h14c1.654 0 3-1.346 3-3v-14c0-1.654-1.346-3-3-3h-14zm19 3v14c0 2.761-2.238 5-5 5h-14c-2.762 0-5-2.239-5-5v-14c0-2.761 2.238-5 5-5h14c2.762 0 5 2.239 5 5z"/>
+                </svg>
+            {% endif %}
+        </div>
+    </td>
+    {% for met in metas["record"] %}
+        <td class="col-record">
+            <span class="block">{{ data[0][met["field_name"]] }}</span>
+        </td>
+    {% endfor %}
+    <td class="col-record">
+        {% for line in data %}
+            <span class="block">{{ line["sequence_order"] }}</span>
+        {% endfor %}
+    </td>
+    {% for met in metas["production"] %}
+        <td class="col-record">
+            {% for line in data %}
+                <span class="block">{{ line[met["field_name"]] }}</span>
+            {% endfor %}
+        </td>
+    {% endfor %}
+    {% for met in metas["speaker"] %}
+        <td class="col-record">
+            {% for line in data %}
+                <span class="block">{{ line[met["field_name"]] }}</span>
+            {% endfor %}
+        </td>
+    {% endfor %}
+    <td class="col-record" x-data>
+        <button class="button text-lg focus:outline-none outline-none" @click="$refs.ouch{{ data[0]['id']}}.play()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-color-primary hover:text-color-secondary text-size-2xl" viewBox="0 0 20 20"
+                                                                                 fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                      clip-rule="evenodd"/>
+            </svg>
+        </button>
+        <audio x-ref="ouch{{ data[0]['id']}}">
+            <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
+        </audio>
+
+        <div class="hidden">
+            <audio controls preload="none">
+                <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </td>
+</tr>
