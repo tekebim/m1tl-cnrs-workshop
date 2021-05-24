@@ -44,6 +44,8 @@ module.exports = {
       'ipa': ['Voces', 'Arial', 'sans-serif']
     }
   },
-  variants: {},
+  variants: {
+    fill: ['hover', 'focus']
+  },
   plugins: [],
 }

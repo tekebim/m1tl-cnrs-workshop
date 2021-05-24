@@ -28,6 +28,7 @@ body {
 #page-about h3 {
     @apply text-2xl;
 }
+
 #page-about p {
     @apply text-lg m-3;
 }
@@ -92,34 +93,36 @@ body {
 /*** Mange_meta ***/
 
 .odd {
-	background-color: var(--table-odd-background-color);
-	color: var(--table-odd-color);
+    background-color: var(--table-odd-background-color);
+    color: var(--table-odd-color);
 }
+
 .even {
-	background-color: var(--table-even-background-color);
-	color: var(--table-even-color);
+    background-color: var(--table-even-background-color);
+    color: var(--table-even-color);
 }
 
 
 .tab {
-  opacity:0;
-  display:none;
-  transform:translate(0,50px);
+    opacity: 0;
+    display: none;
+    transform: translate(0, 50px);
 }
 
-.active-tab,.active-button{
-  transition:transform 0.2s,background-color 0.2s;
+.active-tab, .active-button {
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-.active-tab{
-  display:block;
-  opacity:1;
-  transform:translate(0,0);
-  z-index:99;
+.active-tab {
+    display: block;
+    opacity: 1;
+    transform: translate(0, 0);
+    z-index: 99;
 }
-.active-button{
-  background:white !important;
-  color:#3730a3;
+
+.active-button {
+    background: white !important;
+    color: #3730a3;
 }
 
 /* Colors */
@@ -165,14 +168,6 @@ body {
     text-align: center;
 }
 
-.table-results th.sorted.ascending:after {
-    content: "  \2191";
-}
-
-.table-results th.sorted.descending:after {
-    content: " \2193";
-}
-
 .table-results .to-animate {
     /*
     opacity: 0;
@@ -185,10 +180,6 @@ body {
     top: 0;
 }
 
-.table-results tbody tr {
-    @apply shadow;
-}
-
 .table-results tbody tr:hover {
     @apply shadow-lg;
 }
@@ -198,11 +189,11 @@ body {
 }
 
 .table-results tr.record--selected {
-    background: var(--color-secondary);
+    background: var(--table-selected-background-color);
 }
 
 .table-results .col-head {
-    @apply p-2 py-2 text-xs bg-primary font-semibold uppercase text-white;
+    @apply p-2 py-2 text-xs bg-primary font-semibold uppercase text-white cursor-pointer;
 }
 
 .table-results .col-record {
@@ -272,6 +263,11 @@ body {
     display: block;
     padding: 1rem;
     text-align: left;
+}
+
+/* Overlay */
+.hero-overlay {
+    @apply absolute bg-black opacity-40 top-0 left-0 w-full h-full;
 }
 
 /* Other options */

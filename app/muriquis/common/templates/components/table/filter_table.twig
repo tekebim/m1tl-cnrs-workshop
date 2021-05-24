@@ -34,8 +34,13 @@
         {% endfor %}
 
         <div class="flex justify-center">
-            <button type="submit" name="reset-form" class="py-3 px-8 mx-4 border-0 rounded-md bg-gray-400 text-white">Reset all filters</button>
-            <button type="submit" class="py-3 px-8 mx-4 border-0 rounded-md bg-primary">Apply filters</button>
+            <button type="submit" name="reset-form" class="py-3 px-8 mx-4 border-0 rounded-md bg-gray-400 text-white outline-none focus:outline-none">Reset all filters</button>
+            <button type="submit" class="py-3 px-8 mx-4 border-0 outline-none focus:outline-none rounded-md bg-primary flex mx-4 semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+                Apply filters</button>
         </div>
     </form>
 </div>

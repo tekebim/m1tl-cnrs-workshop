@@ -1,6 +1,6 @@
 <tr data-id="{{ data[0]["record_id"] }}"
-    class="to-animate bg-white {% if data[0]["in_basket"] %}record--selected{% endif %}">
-    <td class="col-record">
+    class="to-animate bg-white duration-300 {% if data[0]["in_basket"] and not isBasket %}record--selected{% endif %}">
+    <td class="col-record" height="60">
         <div class="flex actions-checkbox justify-center">
             {% if isBasket is defined and isBasket %}
                 <svg id="b_{{ data[0]["record_id"] }}_rem" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -26,7 +26,7 @@
         </div>
     </td>
     {% for met in metas["record"] %}
-        <td class="col-record" height="60">
+        <td class="col-record">
             <span class="block">{{ data[0][met["field_name"]] }}</span>
         </td>
     {% endfor %}
@@ -49,13 +49,19 @@
             {% endfor %}
         </td>
     {% endfor %}
-    <td class="col-record">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-color-primary text-size-2xl" viewBox="0 0 20 20"
-             fill="currentColor">
-            <path fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                  clip-rule="evenodd"/>
-        </svg>
+    <td class="col-record" x-data>
+        <button class="button text-lg focus:outline-none outline-none" @click="$refs.ouch{{ data[0]['id']}}.play()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-color-primary hover:text-color-secondary text-size-2xl" viewBox="0 0 20 20"
+                                                                                 fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                      clip-rule="evenodd"/>
+            </svg>
+        </button>
+        <audio x-ref="ouch{{ data[0]['id']}}">
+            <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
+        </audio>
+
         <div class="hidden">
             <audio controls preload="none">
                 <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">

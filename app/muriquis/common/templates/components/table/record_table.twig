@@ -6,31 +6,40 @@
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full rounded-lg overflow-auto">
                 {% if results|length > 0 %}
-                    <table class="min-w-full leading-normal table-results table-auto font-ipa">
+                    <table id="tableResults" name="tableResults" class="min-w-full leading-normal table-results table-auto font-ipa">
                         <thead>
                         <tr>
-                            <th class="col-head">
+                            <th class="no-sort col-head" height="60">
                                 Actions
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
-                                </svg>
                             </th>
                             {% for data in metas["record"] %}
                                 <th class="col-head ">
                                     {{ data["label"] }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
+                                    </svg>
                                 </th>
                             {% endfor %}
                             <th class="col-head">
                                 Sequence order
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
+                                </svg>
                             </th>
                             {% for data in metas["production"] %}
                                 <th class="col-head ">
                                     {{ data["label"] }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
+                                    </svg>
                                 </th>
                             {% endfor %}
                             {% for data in metas["speaker"] %}
                                 <th class="col-head">
                                     {{ data["label"] }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
+                                    </svg>
                                 </th>
                             {% endfor %}
                             <th class="col-head">
