@@ -15,6 +15,19 @@ body {
 
 }
 
+/***** Page About *******/
+#page-about h1 {
+    @apply text-4xl;
+}
+
+#page-about h2 {
+    @apply text-3xl;
+}
+
+#page-about h3 {
+    @apply text-2xl;
+}
+
 /***** Navbar *******/
 .navbar {
     background-color: var(--header-background-color);
@@ -97,6 +110,7 @@ body {
     right: 0;
     border-color: #68D391;
 }
+
 .toggle-checkbox:checked + .toggle-label {
     @apply: bg-green-400;
     background-color: #68D391;

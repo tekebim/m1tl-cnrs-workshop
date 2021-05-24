@@ -13,10 +13,37 @@ const init = () => {
  */
 const editorsWYSIWYG = () => {
   let editors = document.querySelectorAll('.page-content-editor');
+
+  let toolbarOptions = [
+    [{'header': [1, 2, 3, 4, 5, 6, false]}],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [{'header': 1}, {'header': 2}, {'header': 3}, {'header': 4}, {'header': 5}],
+    [{'list': 'ordered'}, {'list': 'bullet'}],
+    [{'script': 'sub'}, {'script': 'super'}],
+    [{'indent': '-1'}, {'indent': '+1'}],
+    ['image'],
+    [{'size': ['small', false, 'large', 'huge']}],
+    [{'color': []}, {'background': []}],
+    [{'align': []}],
+    ['clean']
+  ];
+
   editors.forEach((editor) => {
     let quill = new Quill(editor, {
+      modules: {
+        toolbar: toolbarOptions
+      },
+      placeholder: 'Page content here',
       theme: 'snow'
     });
+  });
+
+  // Event on form update
+  $(".form-update-page").on("submit", function (event) {
+    let pageId = $(this).attr('data-page-id');
+    let contentEditor = $("#page-content-editor-" + pageId + " .ql-editor").html();
+    let contentTextarea = $("#page-content-" + pageId).val(contentEditor);
   });
 }
 

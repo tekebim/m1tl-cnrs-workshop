@@ -58,7 +58,7 @@ if ($need_auth and $user_id == -1) {
     if ($ajax) {
         echo "Authentification requise";
     } else {
-        header('Location: login . php');
+        header('Location: login.php');
     }
     exit();
 }
@@ -109,6 +109,15 @@ $twig->addGlobal('projectURL', getCurrentURL('root'));
 $twig->addGlobal('currentWebsiteURL', getCurrentURL('website'));
 $twig->addGlobal('currentPageURL', getCurrentURL('page'));
 
+
+$twig->addGlobal('menu', getItemsMenu());
+
+getItemsMenu();
+/**
+ * Function to generate current URL
+ * @param $type
+ * @return array|string|string[]
+ */
 function getCurrentURL($type)
 {
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
@@ -130,4 +139,45 @@ function getCurrentURL($type)
     }
 
     return $url;
+}
+
+/*
+ * Function to get items menu element
+ */
+function getItemsMenu()
+{
+    // Load project config
+    $fileConfigPath = ROOT_DIR . "/config/project.json";
+    $fileConfig = file_get_contents($fileConfigPath);
+
+    $itemsMenu = [];
+    // If config file exist
+    if ($fileConfig !== false) {
+        $configJson = json_decode(stripslashes($fileConfig), true);
+        // If configuration file is json
+        if ($configJson !== null) {
+            // If trying to rename the slug
+            if ($configJson['pages']) {
+                $pages = $configJson['pages'];
+                foreach ($pages as $page => $pageConfig) {
+                    if ($pageConfig['isActive']) {
+                        if ($pageConfig['enableSubpages']) {
+                            if (count($pageConfig['subpages']) > 0) {
+                                $subitems = [];
+                                foreach ($pageConfig['subpages'] as $subpage => $subpageConfig) {
+                                    if($subpageConfig['isActive']) {
+                                        $subitems[] = ['id' => $subpageConfig['id'], 'title' => $subpageConfig['title']];
+                                    }
+                                }
+                                $itemsMenu[] = ['title' => $pageConfig['title'], 'url' => $pageConfig['url'], 'subitems' => $subitems];
+                            }
+                        } else {
+                            $itemsMenu[] = ['title' => $pageConfig['title'], 'url' => $pageConfig['url']];
+                        }
+                    }
+                }
+            }
+        }
+        return $itemsMenu;
+    }
 }
