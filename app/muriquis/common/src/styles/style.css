@@ -32,8 +32,6 @@ body {
     @apply text-lg m-3;
 }
 
-
-
 /***** Navbar *******/
 .navbar {
     background-color: var(--header-background-color);

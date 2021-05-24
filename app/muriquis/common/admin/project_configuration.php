@@ -194,6 +194,18 @@ class ProjectConfig
                 $configJson['config']['colors']['projectColorBodyBackground'] = $newColorBodyBackground;
                 $configJson['config']['colors']['projectColorHeaderBackground'] = $newColorHeaderBackground;
 
+                // Database last update date
+                if (isset($_POST['project-bdd-last-update'])) {
+                    $dbLastUpdate = htmlspecialchars($_POST['project-bdd-last-update']);
+                    $configJson['config']['lastUpdate'] = $dbLastUpdate;
+                }
+
+                // Footer text content
+                if (isset($_POST['project-footer-text'])) {
+                    $footerText = htmlspecialchars($_POST['project-footer-text']);
+                    $configJson['blocks']['footer']['content']  = $footerText;
+                }
+
                 // Save modifications to the json file
                 file_put_contents($this->fileConfig, json_encode($configJson, JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 

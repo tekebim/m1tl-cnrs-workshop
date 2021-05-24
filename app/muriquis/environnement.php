@@ -1,5 +1,7 @@
 <?php
+// Define const to be used in projet to avoid error on subdirectory
 define('ROOT_DIR', realpath(__DIR__));
+loadConfig();
 
 /*
  * Load configuration json file
@@ -46,4 +48,3 @@ function initDefaultCfg()
     define("_PROJECT_HEADER_BACKGROUND_COLOR_", "#FFFFFF");
 }
 
-loadConfig();

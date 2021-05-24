@@ -1,5 +1,4 @@
 <?php
-
 require_once(ROOT_DIR . "/common/init.php");
 
 class PageUpdate
@@ -41,12 +40,18 @@ class PageUpdate
         }
     }
 
+    /*
+     * Function to redirect on index page
+     */
     public function redirectToIndex()
     {
         header('Location: ../index.php');
         die();
     }
 
+    /*
+     * Function update content page
+     */
     public function updateContentPage($action)
     {
         if ($this->fileConfig !== false) {
@@ -71,8 +76,8 @@ class PageUpdate
                                         $configJson['pages'][$i]['subpages'][$s]['isActive'] = $_POST['page-is-active'] === 'on' ? true : false;
                                         $configJson['pages'][$i]['subpages'][$s]['title'] = $_POST['page-title'];
                                         $configJson['pages'][$i]['subpages'][$s]['template'] = $_POST['page-template'];
-                                        $configJson['pages'][$i]['subpages'][$s]['content'] = $_POST['page-content'];// Save the file
-
+                                        $configJson['pages'][$i]['subpages'][$s]['content'] = $_POST['page-content'];
+                                        // Save the file
                                         file_put_contents($this->fileConfigPath, json_encode($configJson, JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
                                         break;
                                     }
@@ -87,4 +92,3 @@ class PageUpdate
 }
 
 $page = new PageUpdate();
-

@@ -108,11 +108,10 @@ $twig->addGlobal('projectSlug', _PROJECT_SLUG_);
 $twig->addGlobal('projectURL', getCurrentURL('root'));
 $twig->addGlobal('currentWebsiteURL', getCurrentURL('website'));
 $twig->addGlobal('currentPageURL', getCurrentURL('page'));
-
-
+$twig->addGlobal('lastUpdateBDD', getLastUpdateBDD());
 $twig->addGlobal('menu', getItemsMenu());
+$twig->addGlobal('footerText', getFooterText());
 
-getItemsMenu();
 /**
  * Function to generate current URL
  * @param $type
@@ -179,5 +178,54 @@ function getItemsMenu()
             }
         }
         return $itemsMenu;
+    }
+}
+
+/*
+ * Function to get last version of edition database
+ */
+function getLastUpdateBDD()
+{
+    // Load project config
+    $fileConfigPath = ROOT_DIR . "/config/project.json";
+    $fileConfig = file_get_contents($fileConfigPath);
+
+    $itemsMenu = [];
+    // If config file exist
+    if ($fileConfig !== false) {
+        $configJson = json_decode($fileConfig, true);
+        // If configuration file is json
+        if ($configJson !== null) {
+            $dateField = $configJson['config']['lastUpdate'];
+            // If trying to rename the slug
+            if ($dateField) {
+                $date = $dateField;
+            }
+        }
+        return $date;
+    }
+}
+
+/*
+ * Function to get last version of edition database
+ */
+function getFooterText()
+{
+    // Load project config
+    $fileConfigPath = ROOT_DIR . "/config/project.json";
+    $fileConfig = file_get_contents($fileConfigPath);
+
+    // If config file exist
+    if ($fileConfig !== false) {
+        $configJson = json_decode($fileConfig, true);
+        // If configuration file is json
+        if ($configJson !== null) {
+            $footerTextField = $configJson['blocks']['footer']['content'];
+            // If trying to rename the slug
+            if ($footerTextField) {
+                $data = $footerTextField;
+            }
+        }
+        return $data;
     }
 }

@@ -58,7 +58,8 @@
                                id="project-color-secondary" name="project-color-secondary"/>
                     </div>
                     <div class="grid grid-cols-1">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body Text Color</label>
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body Text
+                            Color</label>
                         <input type="color" id="colorpicker-body-text" name="colorpicker-body-text"
                                pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyText }}">
                         <input type="text"
@@ -67,7 +68,8 @@
                                id="project-color-body-text" name="project-color-body-text"/>
                     </div>
                     <div class="grid grid-cols-1">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body Background Color</label>
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Body
+                            Background Color</label>
                         <input type="color" id="colorpicker-body-background" name="colorpicker-body-background"
                                pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorBodyBackground }}">
                         <input type="text"
@@ -76,7 +78,8 @@
                                id="project-color-body-background" name="project-color-body-background"/>
                     </div>
                     <div class="grid grid-cols-1">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header Text Color</label>
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header Text
+                            Color</label>
                         <input type="color" id="colorpicker-header-text" name="colorpicker-header-text"
                                pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderText }}">
                         <input type="text"
@@ -85,7 +88,8 @@
                                id="project-color-header-text" name="project-color-header-text"/>
                     </div>
                     <div class="grid grid-cols-1">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header Background Color</label>
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Header
+                            Background Color</label>
                         <input type="color" id="colorpicker-header-background" name="colorpicker-header-background"
                                pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="{{ projectColorHeaderBackground }}">
                         <input type="text"
@@ -95,36 +99,28 @@
                     </div>
                 </div>
 
-                <!--<div class="grid grid-cols-1 mt-5 mx-7">
-                    <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Selection</label>
-                    <select class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                    </select>
-                </div>-->
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Date last
+                        update</label>
+                    <input type="text"
+                           class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                           value="{{ lastUpdateBDD }}"
+                           id="project-bdd-last-update" name="project-bdd-last-update"/>
+                </div>
 
                 <div class="grid grid-cols-1 mt-5 mx-7">
-                    <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Upload
-                        Photo</label>
-                    <div class='flex items-center justify-center w-full'>
-                        <label class='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group'>
-                            <div class='flex flex-col items-center justify-center pt-7'>
-                                <svg class="w-10 h-10 text-purple-400 group-hover:text-purple-600" fill="none"
-                                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <p class='lowercase text-sm text-gray-400 group-hover:text-purple-600 pt-1 tracking-wider'>
-                                    Select a photo</p>
-                            </div>
-                            <input type='file' class="hidden"/>
-                        </label>
-                    </div>
+                    <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Footer
+                        content</label>
+                    <input type="text"
+                           class="py-2 px-3 rounded-lg border-2 border-gray-300 mt-1 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                           value="{{ footerText }}"
+                           id="project-footer-text" name="project-footer-text"/>
                 </div>
 
                 <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-                    <button onclick="return confirm('Are you sure you want to reset the original config ?');" type="submit" name="resetDefaultConfig" class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
+                    <button onclick="return confirm('Are you sure you want to reset the original config ?');"
+                            type="submit" name="resetDefaultConfig"
+                            class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>
                         Reset default
                     </button>
                     <button type="submit" name="updateProjectConfig"

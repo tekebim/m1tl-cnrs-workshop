@@ -1,5 +1,6 @@
 {
     "config": {
+        "lastUpdate": "13/05/2021",
         "projectSlug": "muriquis",
         "projectName": "Muriquis website",
         "colors": {
@@ -20,6 +21,7 @@
             "id": 1,
             "title": "Home",
             "url": "index.php",
+            "image": "cover-page-index.jpg",
             "isActive": true,
             "enableSubpages": false
         },
@@ -59,7 +61,7 @@
     ],
     "blocks": {
         "footer": {
-            "content": "u00a9Francisco Dyonisio C Mendes, Didier Demolin (Data) - C. Ponchard, R. Trouville (Website) - 2021"
+            "content": "© Francisco Dyonisio C Mendes, Didier Demolin (Data) - C. Ponchard, R. Trouville (Website) - 2021"
         }
     }
 }
