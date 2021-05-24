@@ -18,6 +18,13 @@ const editorsWYSIWYG = () => {
       theme: 'snow'
     });
   });
+
+  // Event on form update
+  $(".form-update-page").on("submit", function (event) {
+    let pageId = $(this).attr('data-page-id');
+    let contentEditor = $("#page-content-editor-" + pageId + " .ql-editor").html();
+    let contentTextarea = $("#page-content-" + pageId).val(contentEditor);
+  });
 }
 
 /**

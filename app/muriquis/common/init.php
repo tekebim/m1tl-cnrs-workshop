@@ -165,7 +165,9 @@ function getItemsMenu()
                             if (count($pageConfig['subpages']) > 0) {
                                 $subitems = [];
                                 foreach ($pageConfig['subpages'] as $subpage => $subpageConfig) {
-                                    $subitems[] = ['id' => $subpageConfig['id'], 'title' => $subpageConfig['title']];
+                                    if($subpageConfig['isActive']) {
+                                        $subitems[] = ['id' => $subpageConfig['id'], 'title' => $subpageConfig['title']];
+                                    }
                                 }
                                 $itemsMenu[] = ['title' => $pageConfig['title'], 'url' => $pageConfig['url'], 'subitems' => $subitems];
                             }
