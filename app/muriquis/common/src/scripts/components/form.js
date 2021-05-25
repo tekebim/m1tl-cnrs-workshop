@@ -56,6 +56,10 @@ const init = () => {
         // Then remove the selected status
         rem_from_basket(currentDataID);
         parentTableRow.classList.remove('record--selected');
+        // Is page basket
+        if(document.getElementById('page-basket') !== null){
+          parentTableRow.remove();
+        }
       } else {
         // Add the selected status
         add_to_basket(currentDataID);
