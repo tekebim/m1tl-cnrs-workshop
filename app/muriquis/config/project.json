@@ -50,7 +50,7 @@
                 },
                 {
                     "id": "60abd17b6b38a",
-                    "isActive": true,
+                    "isActive": false,
                     "title": "Test template 3",
                     "template": "3",
                     "image": "cover-page-60abd17b6b38a.jpg",
