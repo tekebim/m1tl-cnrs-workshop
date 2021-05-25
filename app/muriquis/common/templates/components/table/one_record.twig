@@ -59,12 +59,9 @@
                       clip-rule="evenodd"/>
             </svg>
         </button>
-        <audio x-ref="ouch{{ data[0]['id']}}">
-            <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
-        </audio>
 
         <div class="hidden">
-            <audio controls preload="none">
+            <audio controls preload="none" x-ref="ouch{{ data[0]['id']}}">
                 <source src="./files/{{ data[0]["filename"] }}" type="audio/wav">
                 Your browser does not support the audio element.
             </audio>
