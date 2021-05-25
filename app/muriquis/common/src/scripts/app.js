@@ -50,7 +50,6 @@ const commons = () => {
  * Functions for home page
  */
 const isHome = () => {
-  console.log('index page');
   customForm.init();
 }
 
@@ -102,14 +101,12 @@ const isBasket = () => {
  * Functions for about page
  */
 const isAbout = () => {
-  console.log('about page');
 }
 
 /**
  * Functions for login page
  */
 const isLogin = () => {
-  console.log('login page');
 }
 
 const isAdminConfig = () => {

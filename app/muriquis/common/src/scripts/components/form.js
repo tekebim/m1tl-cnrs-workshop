@@ -127,16 +127,10 @@ const init = () => {
   Function to initialize datepicker
    */
   function initDatepicker() {
-    let start = moment().subtract(29, 'days');
-    let end = moment();
-
-    function cb(start, end) {
-      $('.input-daterange span').html(start.format('dd/mm/yy') + ' - ' + end.format('dd/mm/yy'));
-    }
-
-    $(".input-daterange").daterangepicker({
-      startDate: start,
-      endDate: end,
+    $(".daterangepicker-field").daterangepicker({
+      showDropdowns: true,
+      minYear: 1901,
+      autoUpdateInput: false,
       ranges: {
         'Today': [moment(), moment()],
         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -145,12 +139,21 @@ const init = () => {
         'This Month': [moment().startOf('month'), moment().endOf('month')],
         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
       }
-    }, cb);
+    });
 
-    cb(start, end);
-
-    console.log(start);
-    console.log(end);
+    // Apply date change on input hidden form
+    $(".daterangepicker-field").on('apply.daterangepicker', function (ev, picker) {
+      // Get the meta data input
+      let metaId = $(this)[0].dataset.id;
+      // Get the datepicker value
+      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      // Now target the inputs hidden
+      let dateFrom = document.getElementById(metaId + '_0');
+      let dateTo = document.getElementById(metaId + '_1');
+      // Apply values
+      dateFrom.value = picker.startDate.format('MM/DD/YYYY');
+      dateTo.value = picker.endDate.format('MM/DD/YYYY');
+    });
   }
 
   initDatepicker();

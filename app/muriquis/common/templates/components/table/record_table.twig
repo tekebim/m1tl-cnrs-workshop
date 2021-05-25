@@ -1,12 +1,12 @@
 <div class="mx-5" data-aos="fade-up" data-aos-delay="300">
     <div class="py-8 overflow-x-scroll md:overflow-hidden">
-        <div>
+        <div id="tableResults" name="tableResults">
             <h2 class="text-2xl text-center font-semibold leading-tight">Results ({{ results|length }})</h2>
         </div>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full rounded-lg overflow-auto">
                 {% if results|length > 0 %}
-                    <table id="tableResults" name="tableResults" class="min-w-full leading-normal table-results table-auto font-ipa">
+                    <table class="min-w-full leading-normal table-results table-auto font-ipa">
                         <thead>
                         <tr>
                             <th class="no-sort col-head" height="60">
@@ -15,21 +15,24 @@
                             {% for data in metas["record"] %}
                                 <th class="col-head ">
                                     {{ data["label"] }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12"
+                                         height="12" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
                                     </svg>
                                 </th>
                             {% endfor %}
                             <th class="col-head">
                                 Sequence order
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12"
+                                     height="12" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
                                 </svg>
                             </th>
                             {% for data in metas["production"] %}
                                 <th class="col-head ">
                                     {{ data["label"] }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12"
+                                         height="12" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
                                     </svg>
                                 </th>
@@ -37,7 +40,8 @@
                             {% for data in metas["speaker"] %}
                                 <th class="col-head">
                                     {{ data["label"] }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white inline-block" width="12"
+                                         height="12" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 0l8 10h-16l8-10zm8 14h-16l8 10 8-10z"/>
                                     </svg>
                                 </th>
