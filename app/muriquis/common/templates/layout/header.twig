@@ -1,0 +1,153 @@
+<header class="sticky top-0 z-40 flex flex-wrap flex-row justify-between md:items-center relative"
+        x-data="{ mobileMenuOpen : false, adminMobileMenuOpen : false }">
+    {% if user_id != -1 %}
+        <div class="w-full h-16 flex items-center relative px-6 bg-gray-700">
+            <button @click="adminMobileMenuOpen = !adminMobileMenuOpen"
+                    class="inline-block md:hidden w-8 h-8 outline-none focus:outline-none text-gray-600 p-1">
+                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                          clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <div class="logo text-white">
+                <span>Administration</span>
+            </div>
+            <nav class="absolute md:relative top-16 left-0 md:top-0 z-20 md:flex md:ml-auto flex-col md:flex-row md:space-x-6 font-semibold w-full md:w-auto bg-gray-700 md:bg-transparent p-6 pt-0 md:p-0"
+                 :class="{ 'flex' : adminMobileMenuOpen , 'hidden' : !adminMobileMenuOpen}"
+                 @click.away="adminMobileMenuOpen = false"
+            >
+                <ul class="md:px-2 md:flex md:space-x-2 relative top-full left-0 right-0 items-center">
+                    <li class="relative parent hover:bg-gray-800">
+                        <a href="/{{ projectSlug }}/admin/manage_meta.php"
+                           class="flex md:inline-flex p-4 items-center space-x-2 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                            </svg>
+                            <span class="flex md:hidden lg:flex">Database Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/{{ projectSlug }}/admin/edit_meta.php"
+                           class="navbar-li text-white hover:bg-gray-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="flex md:hidden lg:flex">Add element</span>
+                        </a>
+                    </li>
+                    <li class="relative parent hover:bg-gray-800">
+                        <a href="#"
+                           class="flex md:inline-flex p-4 items-center space-x-2 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span class="flex md:hidden lg:flex">Configuration</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                 viewBox="0 0 24 24">
+                                <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                            </svg>
+                        </a>
+                        <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 md:bg-gray-800 md:shadow-lg md:rounded-b ">
+                            <li>
+                                <a href="/{{ projectSlug }}/admin/project_configuration.php?edition=settings"
+                                   class="navbar-sub-li text-white">Project settings</a>
+                            </li>
+                            <li>
+                                <a href="/{{ projectSlug }}/admin/project_configuration.php?edition=pages"
+                                   class="navbar-sub-li text-white">Pages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/{{ projectSlug }}/login.php?logout=1"
+                           class="navbar-li text-white hover:bg-gray-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                            <span class="flex md:hidden lg:flex">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+
+    <div class="bg-white w-full navbar">
+        <div class="logo">
+            <a href="/{{ projectSlug }}/index.php" class="flex items-center">
+                <img src="{{ projectURL }}/{{ projectSlug }}/assets/img/logo_wb.png" width="40"
+                     alt="{{ projectName }}" class="mr-4"/>
+                {{ projectName }}
+            </a>
+        </div>
+        <button @click="mobileMenuOpen = !mobileMenuOpen"
+                class="inline-block md:hidden w-8 h-8 outline-none focus:outline-none text-gray-600 p-1 ml-auto">
+            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clip-rule="evenodd"></path>
+            </svg>
+        </button>
+        <nav class="absolute md:relative top-16 left-0 md:top-0 z-20 md:flex md:ml-auto flex-col md:flex-row md:space-x-6 font-semibold w-full md:w-auto bg-white md:bg-transparent p-6 pt-0 md:p-0"
+             :class="{ 'flex' : mobileMenuOpen , 'hidden' : !mobileMenuOpen}" @click.away="mobileMenuOpen = false"
+        >
+            <ul class="md:px-2 md:flex md:space-x-2 relative top-full left-0 right-0 items-center">
+                {% for item in menu %}
+                    {% if item['subitems'] %}
+                        <li class="relative parent">
+                            <a href="#" class="flex navbar-li md:hover-li">
+                                <span>{{ item['title'] }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current pt-1"
+                                     viewBox="0 0 24 24">
+                                    <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/>
+                                </svg>
+                            </a>
+
+                            <ul class="child transition duration-700 md:absolute top-full right-0 md:w-48 bg-white md:shadow-lg md:rounded-b">
+                                {% for subitem in item['subitems'] %}
+                                    <li>
+                                        <a href="/{{ projectSlug }}/{{ item['url'] }}?pid={{ subitem['id'] }}"
+                                           class="navbar-sub-li text-color-primary">{{ subitem['title'] }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/{{ projectSlug }}/{{ item['url'] }}"
+                               class="navbar-li hover-li"><span>{{ item['title'] }}</span></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if user_id != 1 %}
+                    <li>
+                        <a href="/{{ projectSlug }}/login.php" class="navbar-li hover-li"><span>Admin</span></a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="/{{ projectSlug }}/basket.php"
+                       class="flex bg-gradient-to-r from-primary to-primary-dark rounded-full px-8 py-3 my-4 text-white justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"/>
+                        </svg>
+                        <span class="pl-2">Selection (<span
+                                    id="basket-count">{{ sessionBasket|length }}</span>)</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

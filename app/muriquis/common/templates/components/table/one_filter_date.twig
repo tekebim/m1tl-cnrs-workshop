@@ -1,11 +1,8 @@
 <span class="label">{{ meta.label }}</span>
 
-<div class="input-daterange">
-    <i class="fa fa-calendar"></i>&nbsp;
-    <span></span> <i class="fa fa-caret-down"></i>
-</div>
+<input data-id="{{ meta.id }}" class="daterangepicker-field appearance-none block w-full bg-gray-100 text-grey-darker border border-gray-300 rounded py-3 px-4 mt-3 mb-5 focus:border-primary outline-none"></input>
 
-<input autocomplete="off" id="{{ meta.id }}_0" class="dp" type="text" name="value[{{ meta.id }}][0]"
+<input autocomplete="off" id="{{ meta.id }}_0" class="dp" type="hidden" name="value[{{ meta.id }}][0]"
        value="{{ value[0] }}" size="8"/>&nbsp;
-<input autocomplete="off" id="{{ meta.id }}_1" class="dp" type="text" name="value[{{ meta.id }}][1]"
+<input autocomplete="off" id="{{ meta.id }}_1" class="dp" type="hidden" name="value[{{ meta.id }}][1]"
        value="{{ value[1] }}" size="8"/>
