@@ -57,13 +57,13 @@ const isHome = () => {
  * Functions for basket page
  */
 const isBasket = () => {
-
   let rows = document.querySelectorAll('.table-results tbody > tr');
   let selectionIds = [];
   rows.forEach(row => {
     selectionIds.push(row.dataset.id);
   })
 
+  customForm.init();
   customForm.updateDynamicSelectionLinks(selectionIds);
 
   // Event click on button copy link to clipboard
