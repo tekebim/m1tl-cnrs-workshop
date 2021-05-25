@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import 'alpinejs';
 import inView from 'in-view';
-import gsap from 'gsap';
 import customForm from './components/form';
 import adminConfig from './components/adminConfig';
+import AOS from 'aos';
 
 /**
  * Init function
@@ -37,17 +37,13 @@ const init = () => {
  * Global commons functions
  */
 const commons = () => {
-  inView('.to-animate')
-    .on('enter', el => {
-      gsap.to(el,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.25,
-          ease: "linear",
-        },
-      );
-    });
+  AOS.init({
+    offset: 200,
+    duration: 600,
+    easing: 'ease-in-sine',
+    delay: 100,
+    disable: 'mobile'
+  });
 }
 
 /**
